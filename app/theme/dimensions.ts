@@ -7,6 +7,6 @@ export const dimensions = {
   bar: {
     width: "100%",
     height: 64,
-    borderRadius: 24,
+    borderRadius: 32,
   } as ViewStyle,
 }

@@ -13,6 +13,10 @@ export const color = {
    */
   background: palette.black,
   /**
+   * The status bar.
+   */
+  statusBar: palette.black,
+  /**
    * Primary text color.
    */
   textPrimary: "rgba(255, 255, 255, 0.87)",
