@@ -22,7 +22,7 @@
       "text": "Practice piano",
       "color": "orange",
       "target": 60,
-      "current": 2
+      "current": 6
     },
     {
       "text": "Practice piano",
@@ -34,7 +34,7 @@
       "text": "Practice piano",
       "color": "purple",
       "target": 100,
-      "current": 7
+      "current": 1
     }
   ]
 }
