@@ -3,6 +3,7 @@ export const palette = {
   grey: "#252525",
   lightGrey: "#707070",
   white: "#FAFAFA",
+  offWhite: "#F0F0F0",
   blue: "#08F7FE",
   green: "#09FBD3",
   pink: "#FE53BB",

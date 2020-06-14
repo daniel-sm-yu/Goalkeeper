@@ -20,7 +20,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll" backgroundColor={color.background}>
-      <Bar text="BlAhhhhH" color="purple" />
+      <Bar text="test" color="purple" onPress={() => console.log("pressed")} />
     </Screen>
   )
 })
