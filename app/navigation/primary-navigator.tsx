@@ -2,7 +2,7 @@ import React from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { DailyScreen, ProfileScreen } from "../screens"
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
-import { color } from "../theme"
+import { color, dimensions } from "../theme"
 
 type PrimaryParamList = {
   daily: undefined
@@ -16,10 +16,12 @@ export function PrimaryNavigator() {
     <BottomTabs.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
+          const size = dimensions.icon.size
+
           if (route.name === "daily") {
-            return <FontAwesome name="bars" color={color} />
+            return <FontAwesome name="bars" color={color} size={size} />
           } else if (route.name === "profile") {
-            return <MaterialIcons name="account-circle" color={color} />
+            return <MaterialIcons name="account-circle" color={color} size={size} />
           } else {
             return null
           }
@@ -52,12 +54,3 @@ export function PrimaryNavigator() {
     </BottomTabs.Navigator>
   )
 }
-
-/**
- * A list of routes from which we're allowed to leave the app when
- * the user presses the back button on Android.
- *
- * Anything not on this list will be a standard `back` action in
- * react-navigation.
- */
-export const exitRoutes: string[] = ["welcome"] // from bowser, might be useful in the future

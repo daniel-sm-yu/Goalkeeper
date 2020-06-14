@@ -59,15 +59,6 @@ export function useBackButtonHandler(
         return false
       }
 
-      // grab the current route
-      const routeName = getActiveRouteName(navigation.getRootState())
-
-      // are we allowed to exit?
-      if (canExitRef.current(routeName)) {
-        // let the system know we've not handled this event
-        return false
-      }
-
       // we can't exit, so let's turn this into a back action
       if (navigation.canGoBack()) {
         navigation.goBack()

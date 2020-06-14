@@ -12,4 +12,16 @@ export const color = {
    * The screen background.
    */
   background: palette.black,
+  /**
+   * Primary text color
+   */
+  textPrimary: "rgba(255, 255, 255, 0.87)",
+  /**
+   * Secondary text color
+   */
+  textSecondary: "rgba(255, 255, 255, 0.60)",
+  /**
+   * Tertiary text color
+   */
+  textTertiary: "rgba(255, 255, 255, 0.38)",
 }
