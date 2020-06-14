@@ -1,7 +1,7 @@
 import React, { FunctionComponent as Component } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle, FlatList, StyleSheet } from "react-native"
-import { Screen, Text, Bar } from "../components"
+import { ViewStyle, FlatList } from "react-native"
+import { Screen, Bar } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 import { color, spacing } from "../theme"
@@ -31,8 +31,8 @@ export const DailyScreen: Component = observer(function DailyScreen() {
           <Bar
             text={item.text}
             color={item.color}
-            target={item.target}
             current={item.current}
+            target={item.target}
             onPress={() => console.log("pressed")}
           />
         )}

@@ -13,29 +13,45 @@ export interface BarProps {
   onPress
 }
 
+const getOpacity = completion => {
+  if (completion === 0) {
+    return "00"
+  } else if (completion < 3) {
+    return "20"
+  } else if (completion < 7) {
+    return "60"
+  } else if (completion < 11) {
+    return "90"
+  } else if (completion < 15) {
+    return "B0"
+  } else {
+    return "CD"
+  }
+}
+
 export class Bar extends React.Component<BarProps> {
   animation: Animated.Value
 
   constructor(props) {
     super(props)
-    this.animation = new Animated.Value(this.props.current / this.props.target)
+    this.animation = new Animated.Value(Math.max(this.props.current / this.props.target, 0.17))
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.current !== this.props.current) {
       Animated.timing(this.animation, {
-        toValue: this.props.current / this.props.target,
+        toValue: Math.max(this.props.current / this.props.target, 0.17),
         duration: 3000,
       }).start()
     }
   }
 
   render() {
-    const { text, color, target, current, onPress } = this.props
+    const { text, color, current, target, onPress } = this.props
 
     const widthInterpolated = this.animation.interpolate({
       inputRange: [0, 1],
-      outputRange: ["10%", "100%"],
+      outputRange: ["0%", "100%"],
       extrapolate: "clamp",
     })
 
@@ -48,11 +64,10 @@ export class Bar extends React.Component<BarProps> {
         onPress={onPress}
         style={styles.CONTAINER}
       >
-        <View style={[StyleSheet.absoluteFill, styles.EMPTY_BAR]} />
         <Animated.View
           style={{
             ...styles.BAR,
-            backgroundColor: getColor(color) + "CD",
+            backgroundColor: getColor(color) + getOpacity((100 * current) / target),
             width: widthInterpolated,
           }}
         />
