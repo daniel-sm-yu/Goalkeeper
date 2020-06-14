@@ -33,8 +33,8 @@
     {
       "text": "Practice piano",
       "color": "purple",
-      "target": 29,
-      "current": 25
+      "target": 100,
+      "current": 7
     }
   ]
 }
