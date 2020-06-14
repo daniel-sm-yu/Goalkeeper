@@ -9,4 +9,5 @@ export const palette = {
   pink: "#FE53BB",
   yellow: "#F5D300",
   purple: "#C24CF6",
+  orange: "#FC6E22",
 }

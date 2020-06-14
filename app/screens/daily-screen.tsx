@@ -25,6 +25,8 @@ export const DailyScreen: Component = observer(function DailyScreen() {
       <Bar text="test" color="blue" onPress={() => console.log("pressed")} />
       <Bar text="test" color="pink" onPress={() => console.log("pressed")} />
       <Bar text="test" color="yellow" onPress={() => console.log("pressed")} />
+      <Bar text="test" color="orange" onPress={() => console.log("pressed")} />
+      <Bar text="test" color="d" onPress={() => console.log("pressed")} />
     </Screen>
   )
 })

@@ -50,6 +50,8 @@ export const getColor = color => {
       return palette.yellow
     case "purple":
       return palette.purple
+    case "orange":
+      return palette.orange
     default:
       return palette.lightGrey
   }
