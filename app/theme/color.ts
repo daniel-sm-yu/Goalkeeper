@@ -33,3 +33,20 @@ export const color = {
    */
   unselected: palette.lightGrey,
 }
+
+export const getColor = color => {
+  switch (color) {
+    case "blue":
+      return palette.blue
+    case "green":
+      return palette.green
+    case "pink":
+      return palette.pink
+    case "yellow":
+      return palette.yellow
+    case "purple":
+      return palette.purple
+    default:
+      return palette.lightGrey
+  }
+}
