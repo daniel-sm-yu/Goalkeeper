@@ -13,15 +13,23 @@ export const color = {
    */
   background: palette.black,
   /**
-   * Primary text color
+   * Primary text color.
    */
   textPrimary: "rgba(255, 255, 255, 0.87)",
   /**
-   * Secondary text color
+   * Secondary text color.
    */
   textSecondary: "rgba(255, 255, 255, 0.60)",
   /**
-   * Tertiary text color
+   * Tertiary text color.
    */
   textTertiary: "rgba(255, 255, 255, 0.38)",
+  /**
+   * A selection option.
+   */
+  selected: palette.white,
+  /**
+   * An unselection option.
+   */
+  unselected: palette.lightGrey,
 }
