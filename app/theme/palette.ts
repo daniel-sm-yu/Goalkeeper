@@ -6,8 +6,8 @@ export const palette = {
   offWhite: "#F0F0F0",
   blue: "#08F7FE",
   green: "#01FFC3",
-  pink: "#FE53BB",
   yellow: "#F5D300",
-  purple: "#C24CF6",
   orange: "#FC6E22",
+  pink: "#FE53BB",
+  purple: "#C24CF6",
 }

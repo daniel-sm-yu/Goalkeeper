@@ -1,0 +1,40 @@
+{
+  "goals": [
+    {
+      "text": "Practice piano",
+      "color": "blue",
+      "target": 120,
+      "current": 25
+    },
+    {
+      "text": "Practice piano",
+      "color": "green",
+      "target": 20,
+      "current": 18
+    },
+    {
+      "text": "Practice piano",
+      "color": "yellow",
+      "target": 45,
+      "current": 9
+    },
+    {
+      "text": "Practice piano",
+      "color": "orange",
+      "target": 60,
+      "current": 25
+    },
+    {
+      "text": "Practice piano",
+      "color": "pink",
+      "target": 12,
+      "current": 10
+    },
+    {
+      "text": "Practice piano",
+      "color": "purple",
+      "target": 29,
+      "current": 25
+    }
+  ]
+}
