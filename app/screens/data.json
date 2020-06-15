@@ -1,40 +1,40 @@
 {
   "goals": [
     {
-      "text": "Practice piano",
+      "text": "Practice tuba",
       "color": "blue",
-      "target": 120,
-      "current": 25
+      "target": 200,
+      "current": 140
     },
     {
-      "text": "Practice piano",
+      "text": "Workout",
       "color": "green",
       "target": 20,
-      "current": 18
+      "current": 19
     },
     {
-      "text": "Practice piano",
+      "text": "Work on resume",
       "color": "yellow",
-      "target": 45,
-      "current": 44
+      "target": 44,
+      "current": 22
     },
     {
-      "text": "Practice piano",
+      "text": "Listen to philosophy podcast",
       "color": "orange",
       "target": 60,
-      "current": 6
+      "current": 15
     },
     {
-      "text": "Practice piano",
+      "text": "Meal prep",
       "color": "pink",
-      "target": 12,
-      "current": 10
+      "target": 10,
+      "current": 8
     },
     {
-      "text": "Practice piano",
+      "text": "Study for physics quiz",
       "color": "purple",
       "target": 100,
-      "current": 1
+      "current": 7
     }
   ]
 }

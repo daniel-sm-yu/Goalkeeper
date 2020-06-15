@@ -71,7 +71,7 @@ export class Bar extends React.Component<BarProps> {
             width: widthInterpolated,
           }}
         />
-        <Text>
+        <Text preset="bar" style={styles.TEXT}>
           {text} {(100 * current) / target}%
         </Text>
       </Ripple>
