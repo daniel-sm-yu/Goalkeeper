@@ -11,6 +11,7 @@ export const barStyles = {
   } as ViewStyle,
 
   BAR: {
+    minWidth: 64,
     height: "100%",
     position: "absolute",
     borderRadius: dimensions.bar.borderRadius,

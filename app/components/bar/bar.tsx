@@ -34,13 +34,13 @@ export class Bar extends React.Component<BarProps> {
 
   constructor(props) {
     super(props)
-    this.animation = new Animated.Value(Math.max(this.props.current / this.props.target, 0.17))
+    this.animation = new Animated.Value(this.props.current / this.props.target)
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.current !== this.props.current) {
       Animated.timing(this.animation, {
-        toValue: Math.max(this.props.current / this.props.target, 0.17),
+        toValue: this.props.current / this.props.target,
         duration: 3000,
       }).start()
     }
