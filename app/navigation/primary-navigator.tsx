@@ -1,7 +1,7 @@
 import React from "react"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
 import { DailyScreen, ProfileScreen } from "../screens"
-import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons"
 import { color, dimensions } from "../theme"
 
 type PrimaryParamList = {
@@ -22,7 +22,11 @@ export function PrimaryNavigator() {
         inactiveTintColor: color.inactive,
         showIcon: true,
         showLabel: false,
-        tabStyle: { backgroundColor: color.palette.grey },
+        tabStyle: {
+          borderTopWidth: 1,
+          borderColor: color.background,
+          backgroundColor: color.palette.grey,
+        },
       }}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
@@ -30,7 +34,7 @@ export function PrimaryNavigator() {
           if (route.name === "daily") {
             return <FontAwesome name="bars" color={color} size={size} />
           } else if (route.name === "profile") {
-            return <MaterialIcons name="account-circle" color={color} size={size} />
+            return <MaterialCommunityIcons name="account" color={color} size={size} />
           } else {
             return null
           }
