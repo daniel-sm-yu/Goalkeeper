@@ -35,6 +35,42 @@
       "color": "purple",
       "target": 100,
       "current": 7
+    },
+    {
+      "text": "Practice tuba",
+      "color": "blue",
+      "target": 200,
+      "current": 180
+    },
+    {
+      "text": "Workout",
+      "color": "green",
+      "target": 50,
+      "current": 1
+    },
+    {
+      "text": "Work on resume",
+      "color": "yellow",
+      "target": 40,
+      "current": 30
+    },
+    {
+      "text": "Listen to philosophy podcast",
+      "color": "orange",
+      "target": 60,
+      "current": 42
+    },
+    {
+      "text": "Meal prep",
+      "color": "pink",
+      "target": 10,
+      "current": 1
+    },
+    {
+      "text": "Study for physics quiz",
+      "color": "purple",
+      "target": 100,
+      "current": 47
     }
   ]
 }

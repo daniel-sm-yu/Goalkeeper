@@ -18,8 +18,8 @@ export function PrimaryNavigator() {
       backBehavior="history"
       tabBarPosition="bottom"
       tabBarOptions={{
-        activeTintColor: color.selected,
-        inactiveTintColor: color.unselected,
+        activeTintColor: color.active,
+        inactiveTintColor: color.inactive,
         showIcon: true,
         showLabel: false,
         tabStyle: { backgroundColor: color.palette.grey },

@@ -14,7 +14,7 @@ import { PrimaryNavigator } from "./primary-navigator"
  * as well as what properties (if any) they might take when navigating to them.
  *
  * We recommend using MobX-State-Tree store(s) to handle state rather than navigation params.
- * 
+ *
  * For more information, see this documentation:
  *   https://reactnavigation.org/docs/params/
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
@@ -25,14 +25,13 @@ export type RootParamList = {
 
 const Stack = createStackNavigator<RootParamList>()
 
-
 const RootStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
-              }}
+      }}
     >
       <Stack.Screen
         name="primaryStack"

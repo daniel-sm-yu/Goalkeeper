@@ -29,13 +29,13 @@ export const color = {
    */
   textTertiary: palette.white + "61",
   /**
-   * A selection option.
+   * An active tab.
    */
-  selected: palette.white,
+  active: palette.white,
   /**
-   * An unselection option.
+   * An inactive tab.
    */
-  unselected: palette.lightGrey,
+  inactive: palette.lightGrey,
 }
 
 export const getColor = color => {
