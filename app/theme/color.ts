@@ -19,15 +19,15 @@ export const color = {
   /**
    * Primary text color.
    */
-  textPrimary: "rgba(255, 255, 255, 0.87)",
+  textPrimary: palette.white + "DE",
   /**
    * Secondary text color.
    */
-  textSecondary: "rgba(255, 255, 255, 0.60)",
+  textSecondary: palette.white + "99",
   /**
    * Tertiary text color.
    */
-  textTertiary: "rgba(255, 255, 255, 0.38)",
+  textTertiary: palette.white + "61",
   /**
    * A selection option.
    */

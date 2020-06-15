@@ -1,5 +1,5 @@
 import * as React from "react"
-import { View, Animated, StyleSheet } from "react-native"
+import { View, Animated } from "react-native"
 import { Text } from "../"
 import { barStyles as styles } from "./bar.styles"
 import { getColor, dimensions } from "../../theme"
