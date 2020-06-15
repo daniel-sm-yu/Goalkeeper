@@ -5,7 +5,7 @@ export const barStyles = {
   CONTAINER: {
     ...dimensions.bar,
     justifyContent: "center",
-    marginVertical: spacing[3],
+    marginVertical: spacing[5],
     elevation: 2,
     backgroundColor: color.palette.grey,
   } as ViewStyle,
