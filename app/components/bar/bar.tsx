@@ -17,9 +17,9 @@ const getOpacity = completion => {
   if (completion === 0) {
     return "00"
   } else if (completion < 3) {
-    return "30"
+    return "50"
   } else if (completion < 7) {
-    return "60"
+    return "70"
   } else if (completion < 11) {
     return "90"
   } else if (completion < 15) {
