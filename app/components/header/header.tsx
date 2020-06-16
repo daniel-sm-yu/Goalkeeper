@@ -10,12 +10,9 @@ import { translate } from "../../i18n/"
 // static styles
 const ROOT: ViewStyle = {
   flexDirection: "row",
-  paddingHorizontal: spacing[4],
   alignItems: "center",
-  paddingTop: spacing[4],
-  paddingBottom: spacing[4],
+  padding: spacing[4],
   justifyContent: "flex-start",
-  // backgroundColor: "red",
 }
 const TITLE: TextStyle = { textAlign: "right" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
