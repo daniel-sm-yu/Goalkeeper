@@ -30,6 +30,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
         data={require("./data.json").goals}
         renderItem={({ item }) => (
           <Bar
+            active={item.active}
             text={item.text}
             color={item.color}
             current={item.current}

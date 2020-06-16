@@ -1,11 +1,12 @@
 import * as React from "react"
-import { View, Animated } from "react-native"
+import { Animated } from "react-native"
 import { Text } from "../"
 import { barStyles as styles } from "./bar.styles"
 import { getColor, dimensions } from "../../theme"
 import Ripple from "react-native-material-ripple" // https://www.npmjs.com/package/react-native-material-ripple
 
 export interface BarProps {
+  active: boolean
   text: string
   color: string
   target: number
@@ -17,13 +18,13 @@ const getOpacity = completion => {
   if (completion === 0) {
     return "00"
   } else if (completion < 3) {
-    return "50"
-  } else if (completion < 7) {
     return "70"
+  } else if (completion < 7) {
+    return "85"
   } else if (completion < 11) {
-    return "90"
+    return "A0"
   } else if (completion < 15) {
-    return "B0"
+    return "B5"
   } else {
     return "CD"
   }
@@ -47,7 +48,7 @@ export class Bar extends React.Component<BarProps> {
   }
 
   render() {
-    const { text, color, current, target, onPress } = this.props
+    const { active, text, color, current, target, onPress } = this.props
 
     const widthInterpolated = this.animation.interpolate({
       inputRange: [0, 1],
@@ -55,14 +56,16 @@ export class Bar extends React.Component<BarProps> {
       extrapolate: "clamp",
     })
 
+    const activeStyle = active ? { backgroundColor: getColor(color) + "3D" } : {}
+
     return (
       <Ripple
+        style={[styles.CONTAINER, activeStyle]}
         rippleColor={getColor(color)}
         rippleOpacity={1}
         rippleDuration={750}
         rippleContainerBorderRadius={dimensions.bar.borderRadius}
         onPress={onPress}
-        style={styles.CONTAINER}
       >
         <Animated.View
           style={{
