@@ -19,15 +19,15 @@ export const color = {
   /**
    * Primary text color.
    */
-  textPrimary: palette.white + "DE",
+  textPrimary: palette.white,
   /**
    * Secondary text color.
    */
-  textSecondary: palette.white + "99",
+  textSecondary: palette.white + "DE",
   /**
    * Tertiary text color.
    */
-  textTertiary: palette.white + "61",
+  textTertiary: palette.white + "99",
   /**
    * An active tab.
    */

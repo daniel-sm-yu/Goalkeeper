@@ -12,14 +12,15 @@ const ROOT: ViewStyle = {
   flexDirection: "row",
   paddingHorizontal: spacing[4],
   alignItems: "center",
-  paddingTop: spacing[5],
-  paddingBottom: spacing[5],
+  paddingTop: spacing[4],
+  paddingBottom: spacing[4],
   justifyContent: "flex-start",
+  // backgroundColor: "red",
 }
-const TITLE: TextStyle = { textAlign: "center" }
+const TITLE: TextStyle = { textAlign: "right" }
 const TITLE_MIDDLE: ViewStyle = { flex: 1, justifyContent: "center" }
-const LEFT: ViewStyle = { width: 32 }
-const RIGHT: ViewStyle = { width: 32 }
+const LEFT: ViewStyle = { width: spacing[2] }
+const RIGHT: ViewStyle = { width: spacing[2] }
 
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
@@ -47,7 +48,7 @@ export const Header: Component<HeaderProps> = props => {
         <View style={LEFT} />
       )}
       <View style={TITLE_MIDDLE}>
-        <Text style={{ ...TITLE, ...titleStyle }} text={header} />
+        <Text preset="header" style={{ ...TITLE, ...titleStyle }} text={header} />
       </View>
       {rightIcon ? (
         <Button preset="link" onPress={onRightPress}>

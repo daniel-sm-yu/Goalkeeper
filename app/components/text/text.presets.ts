@@ -22,9 +22,18 @@ export const presets = {
   default: BASE,
 
   /**
-   * Style for the text inside Bar components.
+   * The text inside Bar components.
    */
-  bar: { ...BASE, fontFamily: typography.semibold } as TextStyle,
+  header: {
+    ...BASE,
+    fontFamily: typography.bold,
+    fontSize: 36,
+  } as TextStyle,
+
+  /**
+   * The text inside Bar components.
+   */
+  bar: { ...BASE, fontFamily: typography.semibold, color: color.textSecondary } as TextStyle,
 }
 
 /**

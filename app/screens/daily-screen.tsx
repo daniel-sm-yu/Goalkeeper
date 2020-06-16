@@ -1,7 +1,7 @@
 import React, { FunctionComponent as Component } from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle, FlatList } from "react-native"
-import { Screen, Bar } from "../components"
+import { Screen, Bar, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 import { color, spacing } from "../theme"
@@ -23,7 +23,8 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll" backgroundColor={color.background}>
+    <Screen style={ROOT} preset="fixed" backgroundColor={color.background}>
+      <Header headerText="Daily Goals" />
       <FlatList
         style={FLATLIST}
         data={require("./data.json").goals}
