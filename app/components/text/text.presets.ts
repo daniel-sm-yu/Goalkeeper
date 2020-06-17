@@ -5,9 +5,9 @@ import { color, typography } from "../../theme"
  * All text will start off looking like this.
  */
 const BASE: TextStyle = {
-  fontFamily: typography.regular,
+  fontFamily: typography.medium,
   color: color.textPrimary,
-  fontSize: 15,
+  fontSize: 17,
 }
 
 /**
@@ -27,13 +27,13 @@ export const presets = {
   header: {
     ...BASE,
     fontFamily: typography.bold,
-    fontSize: 36,
+    fontSize: 42,
   } as TextStyle,
 
   /**
    * The text inside Bar components.
    */
-  bar: { ...BASE, fontFamily: typography.semibold, color: color.textSecondary } as TextStyle,
+  bar: { ...BASE, color: color.textSecondary } as TextStyle,
 }
 
 /**
