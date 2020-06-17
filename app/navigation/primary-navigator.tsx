@@ -41,8 +41,8 @@ export function PrimaryNavigator() {
         },
       })}
     >
-      <Tabs.Screen name="daily" component={DailyScreen} />
       <Tabs.Screen name="profile" component={ProfileScreen} />
+      <Tabs.Screen name="daily" component={DailyScreen} />
     </Tabs.Navigator>
   )
 }
