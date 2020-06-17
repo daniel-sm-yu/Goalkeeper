@@ -1,7 +1,7 @@
 import React, { FunctionComponent as Component } from "react"
 import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
-import { Screen, Text } from "../components"
+import { Screen, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 import { color } from "../theme"
@@ -20,7 +20,7 @@ export const ProfileScreen: Component = observer(function ProfileScreen() {
   // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll" backgroundColor={color.background}>
-      <Text preset="header" tx="profileScreen.header" />
+      <Header headerText="Your Profile" />
     </Screen>
   )
 })
