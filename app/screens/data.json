@@ -12,7 +12,7 @@
       "text": "Workout",
       "color": "green",
       "target": 20,
-      "current": 19
+      "current": 20
     },
     {
       "active": true,
@@ -33,7 +33,7 @@
       "text": "Meal prep",
       "color": "pink",
       "target": 10,
-      "current": 8
+      "current": 10
     },
     {
       "active": true,
@@ -46,8 +46,8 @@
       "active": false,
       "text": "Practice tuba",
       "color": "blue",
-      "target": 200,
-      "current": 180
+      "target": 100,
+      "current": 123
     },
     {
       "active": false,
