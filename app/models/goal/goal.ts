@@ -1,5 +1,4 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { boolean } from "mobx-state-tree/dist/internal"
 
 /**
  * Model description here for TypeScript hints.

@@ -4,11 +4,7 @@ import { ViewStyle, FlatList } from "react-native"
 import { Screen, Bar, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
-import { color, spacing } from "../theme"
-
-const ROOT: ViewStyle = {
-  backgroundColor: color.palette.black,
-}
+import { spacing } from "../theme"
 
 const FLATLIST: ViewStyle = {
   paddingHorizontal: spacing[4],
@@ -23,7 +19,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="fixed" backgroundColor={color.background}>
+    <Screen preset="fixed">
       <Header headerText="Daily Goals" />
       <FlatList
         style={FLATLIST}
