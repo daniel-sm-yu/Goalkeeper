@@ -20,7 +20,7 @@ export const AddScreen: Component = observer(function AddScreen() {
   // const navigation = useNavigation()
   return (
     <Screen style={ROOT} preset="scroll">
-      <Header headerText="Add a Goal" />
+      <Header headerText="New Goal" />
     </Screen>
   )
 })
