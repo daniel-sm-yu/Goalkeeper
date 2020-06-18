@@ -1,12 +1,14 @@
 import React from "react"
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
+import { BacklogNavigator } from "./backlog-navigator"
 import { DailyScreen, ProfileScreen } from "../screens"
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons"
+import { MaterialCommunityIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons"
 import { color, dimensions } from "../theme"
 
 type PrimaryParamList = {
-  daily: undefined
   profile: undefined
+  daily: undefined
+  backlog: undefined
 }
 
 const Tabs = createMaterialTopTabNavigator<PrimaryParamList>()
@@ -31,10 +33,12 @@ export function PrimaryNavigator() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => {
           const size = dimensions.icon.size
-          if (route.name === "daily") {
-            return <FontAwesome name="bars" color={color} size={size} />
-          } else if (route.name === "profile") {
+          if (route.name === "profile") {
             return <MaterialCommunityIcons name="account" color={color} size={size} />
+          } else if (route.name === "daily") {
+            return <FontAwesome name="bars" color={color} size={size} />
+          } else if (route.name === "backlog") {
+            return <FontAwesome5 name="grip-vertical" color={color} size={size} />
           } else {
             return null
           }
@@ -43,6 +47,7 @@ export function PrimaryNavigator() {
     >
       <Tabs.Screen name="profile" component={ProfileScreen} />
       <Tabs.Screen name="daily" component={DailyScreen} />
+      <Tabs.Screen name="backlog" component={BacklogNavigator} />
     </Tabs.Navigator>
   )
 }
