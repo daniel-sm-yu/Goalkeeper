@@ -1,10 +1,12 @@
+import { GoalStoreModel } from "../goal-store/goal-store"
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 
 /**
  * A RootStore model.
  */
-//prettier-ignore
+// prettier-ignore
 export const RootStoreModel = types.model("RootStore").props({
+  goalStore: types.optional(GoalStoreModel, {}),
 
 })
 

@@ -1,4 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { boolean } from "mobx-state-tree/dist/internal"
 
 /**
  * Model description here for TypeScript hints.
@@ -7,6 +8,7 @@ export const GoalModel = types
   .model("Goal")
   .props({
     id: types.identifier,
+    daily: types.boolean,
     name: types.string,
     color: types.string,
     target: types.number,
