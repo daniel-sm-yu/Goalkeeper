@@ -15,6 +15,9 @@ export const GoalStoreModel = types
     get dailyGoals() {
       return self.goals.filter(goal => goal.daily)
     },
+    get goalCount() {
+      return self.goals.length
+    },
   }))
   .actions(self => ({
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
