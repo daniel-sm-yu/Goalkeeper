@@ -13,12 +13,11 @@ const CONTAINER = {
 
 const INPUT = {
   // container:
-  height: 50,
+  height: 64,
   borderRadius: 12,
   borderWidth: 0.25,
   borderColor: color.textTertiary,
   marginVertical: spacing[3],
-  paddingVertical: spacing[1],
   paddingHorizontal: spacing[3],
   // text:
   color: color.textPrimary,
