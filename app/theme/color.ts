@@ -29,6 +29,10 @@ export const color = {
    */
   textTertiary: palette.white + "99",
   /**
+   * An error.
+   */
+  error: palette.red,
+  /**
    * An active tab.
    */
   active: palette.white,
