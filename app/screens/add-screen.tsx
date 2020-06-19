@@ -9,22 +9,33 @@ import { color, spacing } from "../theme"
 
 const CONTAINER = {
   paddingTop: spacing[5],
-  paddingHorizontal: spacing[6],
+  paddingHorizontal: spacing[5],
 } as ViewStyle
 
 const INPUT = {
   containerStyle: {
+    marginTop: spacing[3],
+    marginBottom: 0,
     paddingHorizontal: spacing[0],
+    // backgroundColor: "yellow",
   } as ViewStyle,
 
   inputContainerStyle: {
-    borderColor: color.palette.grey,
+    borderRadius: 12,
+    borderWidth: 0.25,
+    borderBottomWidth: 0.25,
+    borderColor: color.textTertiary,
+    paddingVertical: spacing[1],
+    paddingHorizontal: spacing[3],
   } as ViewStyle,
 
+  inputStyle: {
+    fontSize: 32,
+    color: color.textPrimary,
+  } as TextStyle,
+
   errorStyle: {
-    fontSize: 16,
-    color: color.error,
-    marginTop: spacing[0],
+    height: 0,
   } as TextStyle,
 }
 
@@ -46,8 +57,20 @@ export const AddScreen: Component = observer(function AddScreen() {
 
       <View style={CONTAINER}>
         <Text preset="form">I will </Text>
-        <Input {...INPUT} value={name} onChangeText={setName} errorMessage={nameError} />
-        <Text>how long?</Text>
+        <Input
+          {...INPUT}
+          placeholderTextColor={color.textTertiary}
+          value={name}
+          onChangeText={setName}
+          errorMessage={nameError}
+          // multiline
+          autoFocus
+          autoCapitalize="none"
+          caretHidden
+          selectionColor={color.palette.grey}
+        />
+        <Text preset="form">for </Text>
+
         <Text>what color?</Text>
         <Text>add to daily?</Text>
       </View>
