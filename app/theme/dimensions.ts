@@ -9,4 +9,9 @@ export const dimensions = {
     height: 64,
     borderRadius: 32,
   } as ViewStyle,
+  colorButton: {
+    width: "25%",
+    aspectRatio: 1,
+    borderRadius: 16,
+  } as ViewStyle,
 }

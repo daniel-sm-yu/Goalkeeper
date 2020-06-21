@@ -1,7 +1,7 @@
 import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextStyle, TextInput } from "react-native"
-import { Screen, Header, Text } from "../components"
+import { Screen, Header, Text, ColorButton } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 import { color, spacing, typography } from "../theme"
@@ -42,6 +42,11 @@ const NUMBER_INPUT = {
   ...BASE_INPUT,
   minWidth: 50,
 }
+
+const COLOR_CONTAINER = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+} as ViewStyle
 
 export const AddScreen: Component = observer(function AddScreen() {
   // Pull in one of our MST stores
@@ -104,6 +109,19 @@ export const AddScreen: Component = observer(function AddScreen() {
         </View>
 
         <Text>what color?</Text>
+
+        <View style={COLOR_CONTAINER}>
+          <ColorButton color="blue" selected={true} />
+          <ColorButton color="green" />
+          <ColorButton color="yellow" />
+        </View>
+
+        <View style={COLOR_CONTAINER}>
+          <ColorButton color="orange" />
+          <ColorButton color="pink" />
+          <ColorButton color="purple" />
+        </View>
+
         <Text>add to daily?</Text>
       </View>
     </Screen>
