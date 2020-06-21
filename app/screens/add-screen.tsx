@@ -8,7 +8,7 @@ import { color, spacing, typography } from "../theme"
 
 const CONTAINER = {
   justifyContent: "space-between",
-  paddingTop: spacing[5],
+  paddingTop: spacing[3],
   paddingHorizontal: spacing[5],
 } as ViewStyle
 
@@ -17,7 +17,7 @@ const INPUT = {
   minWidth: 62,
   height: 64,
   borderRadius: 12,
-  borderWidth: 0.15,
+  borderWidth: 0.2,
   borderColor: color.textTertiary,
   marginVertical: spacing[3],
   paddingHorizontal: spacing[2],
@@ -56,6 +56,7 @@ export const AddScreen: Component = observer(function AddScreen() {
           style={INPUT}
           value={name}
           onChangeText={setName}
+          textAlignVertical="center"
           autoFocus
           autoCapitalize="none"
           caretHidden
@@ -66,6 +67,8 @@ export const AddScreen: Component = observer(function AddScreen() {
             style={INPUT}
             value={hour}
             onChangeText={setHour}
+            textAlign="center"
+            textAlignVertical="center"
             keyboardType="number-pad"
             caretHidden
           />
@@ -74,6 +77,8 @@ export const AddScreen: Component = observer(function AddScreen() {
             style={INPUT}
             value={minute}
             onChangeText={setMinute}
+            textAlign="center"
+            textAlignVertical="center"
             keyboardType="number-pad"
             caretHidden
           />
