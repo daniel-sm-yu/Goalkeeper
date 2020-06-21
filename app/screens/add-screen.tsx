@@ -7,23 +7,31 @@ import { Screen, Header, Text } from "../components"
 import { color, spacing, typography } from "../theme"
 
 const CONTAINER = {
+  justifyContent: "space-between",
   paddingTop: spacing[5],
   paddingHorizontal: spacing[5],
 } as ViewStyle
 
 const INPUT = {
   // container:
+  minWidth: 62,
   height: 64,
   borderRadius: 12,
-  borderWidth: 0.25,
+  borderWidth: 0.15,
   borderColor: color.textTertiary,
   marginVertical: spacing[3],
-  paddingHorizontal: spacing[3],
+  paddingHorizontal: spacing[2],
   // text:
   color: color.textPrimary,
   fontFamily: typography.light,
   fontSize: 32,
 }
+
+const TIME_CONTAINER = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  alignItems: "center",
+} as ViewStyle
 
 export const AddScreen: Component = observer(function AddScreen() {
   // Pull in one of our MST stores
@@ -35,6 +43,8 @@ export const AddScreen: Component = observer(function AddScreen() {
   // const navigation = useNavigation()
 
   const [name, setName] = React.useState("")
+  const [hour, setHour] = React.useState("")
+  const [minute, setMinute] = React.useState("")
 
   return (
     <Screen preset="scroll">
@@ -49,9 +59,26 @@ export const AddScreen: Component = observer(function AddScreen() {
           autoFocus
           autoCapitalize="none"
           caretHidden
-          selectionColor={color.palette.grey}
         />
-        <Text preset="form">for </Text>
+        <Text preset="form">for</Text>
+        <View style={TIME_CONTAINER}>
+          <TextInput
+            style={INPUT}
+            value={hour}
+            onChangeText={setHour}
+            keyboardType="number-pad"
+            caretHidden
+          />
+          <Text preset="form">hours</Text>
+          <TextInput
+            style={INPUT}
+            value={minute}
+            onChangeText={setMinute}
+            keyboardType="number-pad"
+            caretHidden
+          />
+          <Text preset="form">minutes.</Text>
+        </View>
 
         {/* add another textinput with number keyboard,
         chain inputs: https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar */}
