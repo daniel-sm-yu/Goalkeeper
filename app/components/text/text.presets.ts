@@ -29,7 +29,12 @@ export const presets = {
   /**
    * The question text when adding a new goal.
    */
-  formQuestion: { ...BASE, fontSize: 20, color: color.textTertiary } as TextStyle,
+  formQuestion: {
+    ...BASE,
+    fontFamily: typography.light,
+    fontSize: 20,
+    color: color.textTertiary,
+  } as TextStyle,
 
   /**
    * The answer text when adding a new goal.

@@ -1,6 +1,6 @@
 import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, TextStyle, TextInput } from "react-native"
+import { View, ViewStyle, TextInput } from "react-native"
 import { Screen, Header, Text, ColorButton } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
@@ -46,6 +46,7 @@ const NUMBER_INPUT = {
 const COLOR_CONTAINER = {
   flexDirection: "row",
   justifyContent: "space-between",
+  marginVertical: spacing[3],
 } as ViewStyle
 
 export const AddScreen: Component = observer(function AddScreen() {
@@ -110,7 +111,7 @@ export const AddScreen: Component = observer(function AddScreen() {
           <Text preset="formAnswer">minutes.</Text>
         </View>
 
-        <Text>what color?</Text>
+        <Text preset="formQuestion">Choose a color</Text>
 
         <View style={COLOR_CONTAINER}>
           <ColorButton color="blue" selected={color === "blue"} onPress={() => setColor("blue")} />
