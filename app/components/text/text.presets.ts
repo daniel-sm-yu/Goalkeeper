@@ -29,7 +29,7 @@ export const presets = {
   /**
    * The header text.
    */
-  form: { ...BASE, fontSize: 32, color: color.textSecondary } as TextStyle,
+  form: { ...BASE, fontSize: 24, color: color.textSecondary } as TextStyle,
 
   /**
    * The text inside Bar components.
