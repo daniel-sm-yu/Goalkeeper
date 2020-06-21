@@ -69,7 +69,6 @@ export const AddScreen: Component = observer(function AddScreen() {
   return (
     <Screen preset="scroll">
       <Header headerText="New Goal" />
-
       <View style={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
         <View style={GOAL_CONTAINER}>
@@ -84,7 +83,6 @@ export const AddScreen: Component = observer(function AddScreen() {
             onSubmitEditing={() => hourInput.current.focus()}
           />
         </View>
-
         <View style={GOAL_CONTAINER}>
           <Text preset="formAnswer">for</Text>
           <TextInput
@@ -112,7 +110,6 @@ export const AddScreen: Component = observer(function AddScreen() {
         </View>
 
         <Text preset="formQuestion">Choose a color</Text>
-
         <View style={COLOR_CONTAINER}>
           <ColorButton color="blue" selected={color === "blue"} onPress={() => setColor("blue")} />
           <ColorButton
@@ -126,7 +123,6 @@ export const AddScreen: Component = observer(function AddScreen() {
             onPress={() => setColor("yellow")}
           />
         </View>
-
         <View style={COLOR_CONTAINER}>
           <ColorButton
             color="orange"
@@ -141,7 +137,7 @@ export const AddScreen: Component = observer(function AddScreen() {
           />
         </View>
 
-        <Text>add to daily?</Text>
+        <Text preset="formQuestion">Start today?</Text>
       </View>
     </Screen>
   )

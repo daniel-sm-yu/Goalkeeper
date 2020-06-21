@@ -12,6 +12,6 @@ export const dimensions = {
   colorButton: {
     width: "25%",
     aspectRatio: 1,
-    borderRadius: 16,
+    borderRadius: 12,
   } as ViewStyle,
 }
