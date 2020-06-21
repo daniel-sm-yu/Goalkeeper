@@ -27,9 +27,14 @@ export const presets = {
   header: { ...BASE, fontFamily: typography.bold, fontSize: 42 } as TextStyle,
 
   /**
-   * The header text.
+   * The question text when adding a new goal.
    */
-  form: { ...BASE, fontSize: 24, color: color.textSecondary } as TextStyle,
+  formQuestion: { ...BASE, fontSize: 20, color: color.textTertiary } as TextStyle,
+
+  /**
+   * The answer text when adding a new goal.
+   */
+  formAnswer: { ...BASE, fontSize: 24, color: color.textSecondary } as TextStyle,
 
   /**
    * The text inside Bar components.

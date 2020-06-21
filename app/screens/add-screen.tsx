@@ -35,7 +35,7 @@ const BASE_INPUT = {
 const TEXT_INPUT = {
   ...BASE_INPUT,
   flex: 1,
-  marginLeft: spacing[1],
+  marginLeft: spacing[3],
 }
 
 const NUMBER_INPUT = {
@@ -60,6 +60,7 @@ export const AddScreen: Component = observer(function AddScreen() {
   const [name, setName] = React.useState("")
   const [hour, setHour] = React.useState("")
   const [minute, setMinute] = React.useState("")
+  const [color, setColor] = React.useState("")
 
   const hourInput = useRef()
   const minuteInput = useRef()
@@ -69,8 +70,9 @@ export const AddScreen: Component = observer(function AddScreen() {
       <Header headerText="New Goal" />
 
       <View style={CONTAINER}>
+        <Text preset="formQuestion">What will you do?</Text>
         <View style={GOAL_CONTAINER}>
-          <Text preset="form">I will </Text>
+          <Text preset="formAnswer">I will</Text>
           <TextInput
             style={TEXT_INPUT}
             value={name}
@@ -83,7 +85,7 @@ export const AddScreen: Component = observer(function AddScreen() {
         </View>
 
         <View style={GOAL_CONTAINER}>
-          <Text preset="form">for</Text>
+          <Text preset="formAnswer">for</Text>
           <TextInput
             style={NUMBER_INPUT}
             value={hour}
@@ -95,7 +97,7 @@ export const AddScreen: Component = observer(function AddScreen() {
             ref={hourInput}
             onSubmitEditing={() => minuteInput.current.focus()}
           />
-          <Text preset="form">hours</Text>
+          <Text preset="formAnswer">hours</Text>
           <TextInput
             style={NUMBER_INPUT}
             value={minute}
@@ -105,21 +107,37 @@ export const AddScreen: Component = observer(function AddScreen() {
             keyboardType="number-pad"
             ref={minuteInput}
           />
-          <Text preset="form">minutes.</Text>
+          <Text preset="formAnswer">minutes.</Text>
         </View>
 
         <Text>what color?</Text>
 
         <View style={COLOR_CONTAINER}>
-          <ColorButton color="blue" selected={true} />
-          <ColorButton color="green" />
-          <ColorButton color="yellow" />
+          <ColorButton color="blue" selected={color === "blue"} onPress={() => setColor("blue")} />
+          <ColorButton
+            color="green"
+            selected={color === "green"}
+            onPress={() => setColor("green")}
+          />
+          <ColorButton
+            color="yellow"
+            selected={color === "yellow"}
+            onPress={() => setColor("yellow")}
+          />
         </View>
 
         <View style={COLOR_CONTAINER}>
-          <ColorButton color="orange" />
-          <ColorButton color="pink" />
-          <ColorButton color="purple" />
+          <ColorButton
+            color="orange"
+            selected={color === "orange"}
+            onPress={() => setColor("orange")}
+          />
+          <ColorButton color="pink" selected={color === "pink"} onPress={() => setColor("pink")} />
+          <ColorButton
+            color="purple"
+            selected={color === "purple"}
+            onPress={() => setColor("purple")}
+          />
         </View>
 
         <Text>add to daily?</Text>
