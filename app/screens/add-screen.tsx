@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component } from "react"
+import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextStyle, TextInput } from "react-native"
 import { Screen, Header, Text } from "../components"
@@ -46,6 +46,9 @@ export const AddScreen: Component = observer(function AddScreen() {
   const [hour, setHour] = React.useState("")
   const [minute, setMinute] = React.useState("")
 
+  const hourInput = useRef()
+  const minuteInput = useRef()
+
   return (
     <Screen preset="scroll">
       <Header headerText="New Goal" />
@@ -59,7 +62,8 @@ export const AddScreen: Component = observer(function AddScreen() {
           textAlignVertical="center"
           autoFocus
           autoCapitalize="none"
-          caretHidden
+          returnKeyType="next"
+          onSubmitEditing={() => hourInput.current.focus()}
         />
         <Text preset="form">for</Text>
         <View style={TIME_CONTAINER}>
@@ -70,7 +74,9 @@ export const AddScreen: Component = observer(function AddScreen() {
             textAlign="center"
             textAlignVertical="center"
             keyboardType="number-pad"
-            caretHidden
+            returnKeyType="next"
+            ref={hourInput}
+            onSubmitEditing={() => minuteInput.current.focus()}
           />
           <Text preset="form">hours</Text>
           <TextInput
@@ -80,13 +86,10 @@ export const AddScreen: Component = observer(function AddScreen() {
             textAlign="center"
             textAlignVertical="center"
             keyboardType="number-pad"
-            caretHidden
+            ref={minuteInput}
           />
           <Text preset="form">minutes.</Text>
         </View>
-
-        {/* add another textinput with number keyboard,
-        chain inputs: https://stackoverflow.com/questions/32748718/react-native-how-to-select-the-next-textinput-after-pressing-the-next-keyboar */}
 
         <Text>what color?</Text>
         <Text>add to daily?</Text>
