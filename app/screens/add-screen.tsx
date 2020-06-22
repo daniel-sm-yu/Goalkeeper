@@ -1,13 +1,13 @@
 import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, TextInput, Switch } from "react-native"
+import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
 
 const CONTAINER = {
-  flex: 1,
+  height: Dimensions.get("window").height - 140,
   justifyContent: "space-evenly",
   paddingHorizontal: spacing[5],
 } as ViewStyle
@@ -61,7 +61,7 @@ const BUTTON_CONTAINER = {
   justifyContent: "space-evenly",
 } as ViewStyle
 
-const opacity = "70"
+const opacity = "C0"
 
 export const AddScreen: Component = observer(function AddScreen() {
   // Pull in one of our MST stores
@@ -82,7 +82,7 @@ export const AddScreen: Component = observer(function AddScreen() {
   const minuteInput = useRef()
 
   return (
-    <Screen preset="fixed">
+    <Screen preset="scroll">
       <Header headerText="New Goal" />
       <View style={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
