@@ -1,10 +1,10 @@
 import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, TextInput } from "react-native"
-import { Screen, Header, Text, ColorButton } from "../components"
+import { View, ViewStyle, TextInput, Switch } from "react-native"
+import { Screen, Header, Text, ColorButton, Button } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../models"
-import { color, spacing, typography } from "../theme"
+import { color, spacing, typography, getColor } from "../theme"
 
 const CONTAINER = {
   justifyContent: "space-between",
@@ -49,6 +49,19 @@ const COLOR_CONTAINER = {
   marginVertical: spacing[3],
 } as ViewStyle
 
+const START_TODAY_CONTAINER = {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  marginVertical: spacing[3],
+} as ViewStyle
+
+const BUTTON_CONTAINER = {
+  flexDirection: "row",
+  justifyContent: "space-evenly",
+} as ViewStyle
+
+const opacity = "70"
+
 export const AddScreen: Component = observer(function AddScreen() {
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
@@ -61,7 +74,8 @@ export const AddScreen: Component = observer(function AddScreen() {
   const [name, setName] = React.useState("")
   const [hour, setHour] = React.useState("")
   const [minute, setMinute] = React.useState("")
-  const [color, setColor] = React.useState("")
+  const [selectedColor, setSelectedColor] = React.useState("")
+  const [startToday, setStartToday] = React.useState(false)
 
   const hourInput = useRef()
   const minuteInput = useRef()
@@ -111,33 +125,75 @@ export const AddScreen: Component = observer(function AddScreen() {
 
         <Text preset="formQuestion">Choose a color</Text>
         <View style={COLOR_CONTAINER}>
-          <ColorButton color="blue" selected={color === "blue"} onPress={() => setColor("blue")} />
+          <ColorButton
+            color="blue"
+            selected={selectedColor === "blue"}
+            onPress={() => setSelectedColor("blue")}
+          />
           <ColorButton
             color="green"
-            selected={color === "green"}
-            onPress={() => setColor("green")}
+            selected={selectedColor === "green"}
+            onPress={() => setSelectedColor("green")}
           />
           <ColorButton
             color="yellow"
-            selected={color === "yellow"}
-            onPress={() => setColor("yellow")}
+            selected={selectedColor === "yellow"}
+            onPress={() => setSelectedColor("yellow")}
           />
         </View>
         <View style={COLOR_CONTAINER}>
           <ColorButton
             color="orange"
-            selected={color === "orange"}
-            onPress={() => setColor("orange")}
+            selected={selectedColor === "orange"}
+            onPress={() => setSelectedColor("orange")}
           />
-          <ColorButton color="pink" selected={color === "pink"} onPress={() => setColor("pink")} />
+          <ColorButton
+            color="pink"
+            selected={selectedColor === "pink"}
+            onPress={() => setSelectedColor("pink")}
+          />
           <ColorButton
             color="purple"
-            selected={color === "purple"}
-            onPress={() => setColor("purple")}
+            selected={selectedColor === "purple"}
+            onPress={() => setSelectedColor("purple")}
           />
         </View>
 
-        <Text preset="formQuestion">Start today?</Text>
+        <View style={START_TODAY_CONTAINER}>
+          <Text preset="formQuestion">Start today?</Text>
+          <Switch
+            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
+            trackColor={{
+              true: selectedColor
+                ? getColor(selectedColor) + opacity
+                : color.palette.blue + opacity,
+              false: color.palette.lightGrey + opacity,
+            }}
+            thumbColor={color.palette.white}
+            ios_backgroundColor={color.palette.white}
+            onValueChange={() => setStartToday(previousState => !previousState)}
+            value={startToday}
+          />
+        </View>
+
+        <View style={BUTTON_CONTAINER}>
+          <Button
+            text="Cancel"
+            onPress={() => {
+              setName("")
+              setHour("")
+              setMinute("")
+              setSelectedColor("")
+              setStartToday(false)
+            }}
+          />
+          <Button
+            text="Add Goal"
+            style={{
+              backgroundColor: color.palette.lightGrey + opacity,
+            }}
+          />
+        </View>
       </View>
     </Screen>
   )
