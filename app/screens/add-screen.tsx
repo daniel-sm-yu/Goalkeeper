@@ -46,13 +46,14 @@ const NUMBER_INPUT = {
 const COLOR_CONTAINER = {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginVertical: spacing[3],
+  marginVertical: spacing[2],
+  paddingHorizontal: spacing[3],
 } as ViewStyle
 
 const START_TODAY_CONTAINER = {
   flexDirection: "row",
   justifyContent: "space-between",
-  marginVertical: spacing[3],
+  marginBottom: spacing[2],
 } as ViewStyle
 
 const BUTTON_CONTAINER = {
@@ -85,78 +86,82 @@ export const AddScreen: Component = observer(function AddScreen() {
       <Header headerText="New Goal" />
       <View style={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
-        <View style={GOAL_CONTAINER}>
-          <Text preset="formAnswer">I will</Text>
-          <TextInput
-            style={TEXT_INPUT}
-            value={name}
-            onChangeText={setName}
-            textAlignVertical="center"
-            autoCapitalize="none"
-            returnKeyType="next"
-            onSubmitEditing={() => hourInput.current.focus()}
-          />
-        </View>
-        <View style={GOAL_CONTAINER}>
-          <Text preset="formAnswer">for</Text>
-          <TextInput
-            style={NUMBER_INPUT}
-            value={hour}
-            onChangeText={setHour}
-            textAlign="center"
-            textAlignVertical="center"
-            keyboardType="number-pad"
-            returnKeyType="next"
-            ref={hourInput}
-            onSubmitEditing={() => minuteInput.current.focus()}
-          />
-          <Text preset="formAnswer">hours</Text>
-          <TextInput
-            style={NUMBER_INPUT}
-            value={minute}
-            onChangeText={setMinute}
-            textAlign="center"
-            textAlignVertical="center"
-            keyboardType="number-pad"
-            ref={minuteInput}
-          />
-          <Text preset="formAnswer">minutes.</Text>
+        <View>
+          <View style={GOAL_CONTAINER}>
+            <Text preset="formAnswer">I will</Text>
+            <TextInput
+              style={TEXT_INPUT}
+              value={name}
+              onChangeText={setName}
+              textAlignVertical="center"
+              autoCapitalize="none"
+              returnKeyType="next"
+              onSubmitEditing={() => hourInput.current.focus()}
+            />
+          </View>
+          <View style={GOAL_CONTAINER}>
+            <Text preset="formAnswer">for</Text>
+            <TextInput
+              style={NUMBER_INPUT}
+              value={hour}
+              onChangeText={setHour}
+              textAlign="center"
+              textAlignVertical="center"
+              keyboardType="number-pad"
+              returnKeyType="next"
+              ref={hourInput}
+              onSubmitEditing={() => minuteInput.current.focus()}
+            />
+            <Text preset="formAnswer">hours</Text>
+            <TextInput
+              style={NUMBER_INPUT}
+              value={minute}
+              onChangeText={setMinute}
+              textAlign="center"
+              textAlignVertical="center"
+              keyboardType="number-pad"
+              ref={minuteInput}
+            />
+            <Text preset="formAnswer">minutes.</Text>
+          </View>
         </View>
 
         <Text preset="formQuestion">Choose a color</Text>
-        <View style={COLOR_CONTAINER}>
-          <ColorButton
-            color="blue"
-            selected={selectedColor === "blue"}
-            onPress={() => setSelectedColor("blue")}
-          />
-          <ColorButton
-            color="green"
-            selected={selectedColor === "green"}
-            onPress={() => setSelectedColor("green")}
-          />
-          <ColorButton
-            color="yellow"
-            selected={selectedColor === "yellow"}
-            onPress={() => setSelectedColor("yellow")}
-          />
-        </View>
-        <View style={COLOR_CONTAINER}>
-          <ColorButton
-            color="orange"
-            selected={selectedColor === "orange"}
-            onPress={() => setSelectedColor("orange")}
-          />
-          <ColorButton
-            color="pink"
-            selected={selectedColor === "pink"}
-            onPress={() => setSelectedColor("pink")}
-          />
-          <ColorButton
-            color="purple"
-            selected={selectedColor === "purple"}
-            onPress={() => setSelectedColor("purple")}
-          />
+        <View>
+          <View style={COLOR_CONTAINER}>
+            <ColorButton
+              color="blue"
+              selected={selectedColor === "blue"}
+              onPress={() => setSelectedColor("blue")}
+            />
+            <ColorButton
+              color="green"
+              selected={selectedColor === "green"}
+              onPress={() => setSelectedColor("green")}
+            />
+            <ColorButton
+              color="yellow"
+              selected={selectedColor === "yellow"}
+              onPress={() => setSelectedColor("yellow")}
+            />
+          </View>
+          <View style={COLOR_CONTAINER}>
+            <ColorButton
+              color="orange"
+              selected={selectedColor === "orange"}
+              onPress={() => setSelectedColor("orange")}
+            />
+            <ColorButton
+              color="pink"
+              selected={selectedColor === "pink"}
+              onPress={() => setSelectedColor("pink")}
+            />
+            <ColorButton
+              color="purple"
+              selected={selectedColor === "purple"}
+              onPress={() => setSelectedColor("purple")}
+            />
+          </View>
         </View>
 
         <View style={START_TODAY_CONTAINER}>
