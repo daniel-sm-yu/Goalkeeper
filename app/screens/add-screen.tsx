@@ -7,8 +7,8 @@ import { Screen, Header, Text, ColorButton, Button } from "../components"
 import { color, spacing, typography, getColor } from "../theme"
 
 const CONTAINER = {
-  justifyContent: "space-between",
-  paddingTop: spacing[3],
+  flex: 1,
+  justifyContent: "space-evenly",
   paddingHorizontal: spacing[5],
 } as ViewStyle
 
@@ -81,7 +81,7 @@ export const AddScreen: Component = observer(function AddScreen() {
   const minuteInput = useRef()
 
   return (
-    <Screen preset="scroll">
+    <Screen preset="fixed">
       <Header headerText="New Goal" />
       <View style={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
