@@ -81,6 +81,11 @@ export const AddScreen: Component = observer(function AddScreen() {
   const hourInput = useRef()
   const minuteInput = useRef()
 
+  const commonInputProps = {
+    textAlignVertical: "center",
+    blurOnSubmit: false,
+  }
+
   return (
     <Screen preset="scroll">
       <Header headerText="New Goal" />
@@ -93,34 +98,34 @@ export const AddScreen: Component = observer(function AddScreen() {
               style={TEXT_INPUT}
               value={name}
               onChangeText={setName}
-              textAlignVertical="center"
               autoCapitalize="none"
               returnKeyType="next"
               onSubmitEditing={() => hourInput.current.focus()}
+              {...commonInputProps}
             />
           </View>
           <View style={GOAL_CONTAINER}>
             <Text preset="formAnswer">for</Text>
             <TextInput
+              ref={hourInput}
               style={NUMBER_INPUT}
               value={hour}
               onChangeText={setHour}
               textAlign="center"
-              textAlignVertical="center"
               keyboardType="number-pad"
               returnKeyType="next"
-              ref={hourInput}
               onSubmitEditing={() => minuteInput.current.focus()}
+              {...commonInputProps}
             />
             <Text preset="formAnswer">hours</Text>
             <TextInput
+              ref={minuteInput}
               style={NUMBER_INPUT}
               value={minute}
               onChangeText={setMinute}
               textAlign="center"
-              textAlignVertical="center"
               keyboardType="number-pad"
-              ref={minuteInput}
+              {...commonInputProps}
             />
             <Text preset="formAnswer">minutes.</Text>
           </View>
