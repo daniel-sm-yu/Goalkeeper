@@ -1,5 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import uuid from "react-native-uuid"
+import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-native-uuid
 
 /**
  * Model description here for TypeScript hints.
@@ -7,7 +7,7 @@ import uuid from "react-native-uuid"
 export const GoalModel = types
   .model("Goal")
   .props({
-    id: types.optional(types.identifier, uuid.v4()),
+    id: types.optional(types.identifier, uuid.v4()), // TODO not generating new value each time
     name: types.string,
     target: types.number,
     current: types.optional(types.number, 0),
