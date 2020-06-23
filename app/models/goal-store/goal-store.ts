@@ -15,11 +15,19 @@ export const GoalStoreModel = types
     get dailyGoals() {
       return self.goals.filter(goal => goal.daily)
     },
+    get nonDailyGoals() {
+      return self.goals.filter(goal => !goal.daily)
+    },
     get goalCount() {
       return self.goals.length
     },
   }))
   .actions(self => ({
+    addGoal: (name: string, hour: number, minute: number, color: string, today: boolean) => {
+      console.log(
+        `name: ${name}\nhour: ${hour}\nminute: ${minute}\ncolor: ${color}\n today: ${today}\n\n\n`,
+      )
+    },
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
       const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
       self.goals.replace(goalModels)

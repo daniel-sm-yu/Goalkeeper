@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
 // import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
+import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
 
 const CONTAINER = {
@@ -64,10 +64,7 @@ const BUTTON_CONTAINER = {
 const opacity = "C0"
 
 export const AddScreen: Component = observer(function AddScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
-  // OR
-  // const rootStore = useStores()
+  const { goalStore } = useStores()
 
   // Pull in navigation via hook
   // const navigation = useNavigation()
@@ -197,9 +194,10 @@ export const AddScreen: Component = observer(function AddScreen() {
           />
           <Button
             text="Add Goal"
-            style={{
-              backgroundColor: color.palette.lightGrey + opacity,
-            }}
+            style={{ backgroundColor: color.palette.lightGrey + opacity }}
+            onPress={() =>
+              goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
+            }
           />
         </View>
       </View>
