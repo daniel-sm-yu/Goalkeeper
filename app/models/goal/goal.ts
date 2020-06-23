@@ -8,11 +8,11 @@ export const GoalModel = types
   .model("Goal")
   .props({
     id: types.optional(types.identifier, uuid.v4()),
-    today: types.boolean,
     name: types.string,
-    color: types.string,
     target: types.number,
     current: types.optional(types.number, 0),
+    color: types.string,
+    today: types.boolean,
   })
   .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
