@@ -1,4 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import uuid from "react-native-uuid"
 
 /**
  * Model description here for TypeScript hints.
@@ -6,8 +7,8 @@ import { Instance, SnapshotOut, types } from "mobx-state-tree"
 export const GoalModel = types
   .model("Goal")
   .props({
-    id: types.identifier,
-    daily: types.boolean,
+    id: types.optional(types.identifier, uuid.v4()),
+    today: types.boolean,
     name: types.string,
     color: types.string,
     target: types.number,

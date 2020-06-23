@@ -120,7 +120,6 @@ export const AddScreen: Component = observer(function AddScreen() {
               textAlign="center"
               textAlignVertical="center"
               keyboardType="number-pad"
-              blurOnSubmit={false}
             />
             <Text preset="formAnswer">minutes.</Text>
           </View>
