@@ -1,5 +1,6 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-native-uuid
+import "react-native-get-random-values"
+import { v4 as uuidv4 } from "uuid"
 
 /**
  * Model description here for TypeScript hints.
@@ -7,7 +8,7 @@ import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-nati
 export const GoalModel = types
   .model("Goal")
   .props({
-    id: types.optional(types.identifier, uuid.v4()), // TODO not generating new value each time
+    id: types.optional(types.identifier, uuidv4()),
     name: types.string,
     target: types.number,
     current: types.optional(types.number, 0),
