@@ -76,8 +76,8 @@ export class Bar extends React.Component<BarProps> {
           }}
         />
         <Text preset="bar" style={styles.TEXT}>
-          {name} for {target / 60 < 1 ? "" : `${Math.floor(target / 60)} h `}
-          {target % 60} m
+          {name} for{target / 60 < 1 ? "" : ` ${Math.floor(target / 60)} h`}
+          {target % 60 === 0 ? "" : ` ${target % 60} m`}
         </Text>
       </Ripple>
     )
