@@ -77,6 +77,14 @@ export const AddScreen: Component = observer(function AddScreen() {
   const [selectedColor, setSelectedColor] = React.useState("")
   const [startToday, setStartToday] = React.useState(false)
 
+  const resetForm = () => {
+    setName("")
+    setHour("")
+    setMinute("")
+    setSelectedColor("")
+    setStartToday(false)
+  }
+
   const hourInput = useRef()
   const minuteInput = useRef()
 
@@ -183,22 +191,14 @@ export const AddScreen: Component = observer(function AddScreen() {
         </View>
 
         <View style={BUTTON_CONTAINER}>
-          <Button
-            text="Cancel"
-            onPress={() => {
-              setName("")
-              setHour("")
-              setMinute("")
-              setSelectedColor("")
-              setStartToday(false)
-            }}
-          />
+          <Button text="Cancel" onPress={resetForm} />
           <Button
             text="Add Goal"
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
-            onPress={() =>
+            onPress={() => {
               goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
-            }
+              resetForm()
+            }}
           />
         </View>
       </View>
