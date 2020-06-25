@@ -76,7 +76,7 @@ export class Bar extends React.Component<BarProps> {
           }}
         />
         <Text preset="bar" style={styles.TEXT}>
-          {text} {(100 * current) / target}%
+          {text} for {target / 60 < 1 ? "" : `${Math.floor(target / 60)} h`} {target % 60} m
         </Text>
       </Ripple>
     )
