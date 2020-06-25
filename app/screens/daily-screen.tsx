@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite"
 import { ViewStyle, FlatList } from "react-native"
 import { Screen, Bar, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../models"
+import { useStores } from "../models"
 import { spacing } from "../theme"
 
 const FLATLIST: ViewStyle = {
@@ -11,10 +11,7 @@ const FLATLIST: ViewStyle = {
 }
 
 export const DailyScreen: Component = observer(function DailyScreen() {
-  // Pull in one of our MST stores
-  // const { someStore, anotherStore } = useStores()
-  // OR
-  // const rootStore = useStores()
+  const { goalStore } = useStores()
 
   // Pull in navigation via hook
   // const navigation = useNavigation()
@@ -23,11 +20,12 @@ export const DailyScreen: Component = observer(function DailyScreen() {
       <Header headerText="Daily Goals" />
       <FlatList
         style={FLATLIST}
-        data={require("./data.json").goals}
+        // data={require("./data.json").goals}
+        data={goalStore.dailyGoals}
         renderItem={({ item }) => (
           <Bar
-            active={item.active}
-            text={item.text}
+            active={item.id === goalStore.active}
+            text={item.name}
             color={item.color}
             current={item.current}
             target={item.target}

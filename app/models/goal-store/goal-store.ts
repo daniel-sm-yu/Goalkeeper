@@ -1,7 +1,6 @@
-/* eslint-disable generator-star-spacing */
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GoalModel, GoalSnapshot, Goal } from "../goal/goal"
-import uuid from "react-native-uuid"
+import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-native-uuid
 
 /**
  * Model description here for TypeScript hints.
@@ -25,9 +24,11 @@ export const GoalStoreModel = types
   }))
   .actions(self => ({
     addGoal: (name: string, hour: number, minute: number, color: string, today: boolean) => {
-      const data = { id: uuid.v4(), name, target: hour * 60 + minute, color, today }
-      const goal = GoalModel.create(data)
-      console.log(goal)
+      const goalData = { id: uuid.v4(), name, target: hour * 60 + minute, color, today }
+      const newGoal = GoalModel.create(goalData)
+      self.goals.push(newGoal)
+      // add to storage
+      console.log(self.goals)
     },
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
       const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
@@ -43,6 +44,7 @@ export const GoalStoreModel = types
   .actions(self => ({
     afterCreate() {
       self.getGoals()
+      // self.saveGoals([]) // use to delete all goals
     },
   }))
 

@@ -6,6 +6,8 @@ import { Screen, Header, Text, ColorButton, Button } from "../components"
 import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
 
+// TODO add input requirements and notifications
+
 const CONTAINER = {
   height: Dimensions.get("window").height - 140,
   justifyContent: "space-evenly",
