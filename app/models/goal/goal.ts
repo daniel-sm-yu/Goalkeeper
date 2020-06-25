@@ -1,6 +1,4 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import "react-native-get-random-values"
-import { v4 as uuidv4 } from "uuid"
 
 /**
  * Model description here for TypeScript hints.
@@ -8,7 +6,7 @@ import { v4 as uuidv4 } from "uuid"
 export const GoalModel = types
   .model("Goal")
   .props({
-    id: types.optional(types.identifier, uuidv4()),
+    id: types.identifier,
     name: types.string,
     target: types.number,
     current: types.optional(types.number, 0),
