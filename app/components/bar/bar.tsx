@@ -7,7 +7,7 @@ import Ripple from "react-native-material-ripple" // https://www.npmjs.com/packa
 
 export interface BarProps {
   active: boolean
-  text: string
+  name: string
   color: string
   target: number
   current: number
@@ -48,7 +48,7 @@ export class Bar extends React.Component<BarProps> {
   }
 
   render() {
-    const { active, text, color, current, target, onPress } = this.props
+    const { active, name, color, current, target, onPress } = this.props
 
     const widthInterpolated = this.animation.interpolate({
       inputRange: [0, 1],
@@ -76,7 +76,8 @@ export class Bar extends React.Component<BarProps> {
           }}
         />
         <Text preset="bar" style={styles.TEXT}>
-          {text} for {target / 60 < 1 ? "" : `${Math.floor(target / 60)} h`} {target % 60} m
+          {name} for {target / 60 < 1 ? "" : `${Math.floor(target / 60)} h `}
+          {target % 60} m
         </Text>
       </Ripple>
     )

@@ -25,7 +25,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
         renderItem={({ item }) => (
           <Bar
             active={item.id === goalStore.active}
-            text={item.name}
+            name={item.name}
             color={item.color}
             current={item.current}
             target={item.target}
