@@ -14,7 +14,7 @@ import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef, FunctionComponent as Component } from "react"
 import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
-  import { initFonts } from "./theme/fonts"
+import { initFonts } from "./theme/fonts"
 import * as storage from "./utils/storage"
 import {
   useBackButtonHandler,
@@ -24,11 +24,12 @@ import {
   useNavigationPersistence,
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
+import FlashMessage from "react-native-flash-message" // https://www.npmjs.com/package/react-native-flash-message
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
-import { enableScreens } from 'react-native-screens';
+import { enableScreens } from "react-native-screens"
 enableScreens()
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
@@ -49,9 +50,9 @@ const App: Component<{}> = () => {
 
   // Kick off initial async loading actions, like loading fonts and RootStore
   useEffect(() => {
-    (async () => {
-          await initFonts()
-          setupRootStore().then(setRootStore)
+    ;(async () => {
+      await initFonts()
+      setupRootStore().then(setRootStore)
     })()
   }, [])
 
@@ -70,6 +71,7 @@ const App: Component<{}> = () => {
           initialState={initialNavigationState}
           onStateChange={onNavigationStateChange}
         />
+        <FlashMessage position="bottom" duration={6000} />
       </SafeAreaProvider>
     </RootStoreProvider>
   )

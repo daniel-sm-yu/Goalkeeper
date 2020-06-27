@@ -2,16 +2,16 @@ import React, { FunctionComponent as Component, useRef } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
-// import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
-
-// TODO add input requirements and notifications
+import { showMessage } from "react-native-flash-message"
 
 const CONTAINER = {
   height: Dimensions.get("window").height - 160,
   justifyContent: "space-between",
-  paddingBottom: spacing[3],
+  paddingTop: spacing[1],
+  paddingBottom: spacing[5],
   paddingHorizontal: spacing[5],
 } as ViewStyle
 
@@ -68,9 +68,7 @@ const opacity = "C0"
 
 export const AddScreen: Component = observer(function AddScreen() {
   const { goalStore } = useStores()
-
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
+  const navigation = useNavigation()
 
   const [name, setName] = React.useState("")
   const [hour, setHour] = React.useState("")
@@ -86,6 +84,7 @@ export const AddScreen: Component = observer(function AddScreen() {
     setStartToday(false)
   }
 
+  const nameInput = useRef()
   const hourInput = useRef()
   const minuteInput = useRef()
 
@@ -98,6 +97,7 @@ export const AddScreen: Component = observer(function AddScreen() {
           <View style={GOAL_CONTAINER}>
             <Text preset="formAnswer">I will</Text>
             <TextInput
+              ref={nameInput}
               style={TEXT_INPUT}
               value={name}
               onChangeText={setName}
@@ -197,8 +197,35 @@ export const AddScreen: Component = observer(function AddScreen() {
             text="Add Goal"
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
             onPress={() => {
-              goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
-              resetForm()
+              if (!name) {
+                nameInput.current.focus()
+                showMessage({
+                  message: "Missing Goal",
+                  description: "Please enter your goal.",
+                  type: "danger",
+                  icon: { icon: "danger", position: "left" },
+                })
+              } else if (!hour && !minute) {
+                hourInput.current.focus()
+                showMessage({
+                  message: "Missing Duration",
+                  description: `How long do you wish to ${name}?`,
+                  type: "danger",
+                  icon: { icon: "danger", position: "left" },
+                })
+              } else {
+                goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
+                resetForm()
+                showMessage({
+                  message: `New Goal: ${name}`,
+                  description: "Tap here to see it.",
+                  titleStyle: { textTransform: "capitalize" },
+                  type: "success",
+                  icon: { icon: "success", position: "left" },
+                  onPress: () =>
+                    startToday ? navigation.navigate("daily") : navigation.navigate("backlog"),
+                })
+              }
             }}
           />
         </View>
