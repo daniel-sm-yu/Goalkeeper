@@ -9,8 +9,9 @@ import { color, spacing, typography, getColor } from "../theme"
 // TODO add input requirements and notifications
 
 const CONTAINER = {
-  height: Dimensions.get("window").height - 140,
-  justifyContent: "space-evenly",
+  height: Dimensions.get("window").height - 160,
+  justifyContent: "space-between",
+  paddingBottom: spacing[3],
   paddingHorizontal: spacing[5],
 } as ViewStyle
 
