@@ -1,5 +1,4 @@
 import * as React from "react"
-import { colorButtonStyles as styles } from "./color-button.styles"
 import { getColor, dimensions } from "../../theme"
 import Ripple from "react-native-material-ripple"
 
@@ -13,11 +12,11 @@ export function ColorButton(props: ColorButtonProps) {
   const { color, selected, onPress } = props
 
   const colorStyle = { backgroundColor: getColor(color) + "CD" }
-  const selectedStyle = selected ? { borderWidth: 5, borderColor: getColor(color) } : {}
+  const selectedStyle = selected ? { borderWidth: 6, borderColor: getColor(color) } : {}
 
   return (
     <Ripple
-      style={[styles.CONTAINER, colorStyle, selectedStyle]}
+      style={[dimensions.colorButton, colorStyle, selectedStyle]}
       rippleColor={getColor(color)}
       rippleOpacity={1}
       rippleDuration={300}
