@@ -18,6 +18,7 @@ export const barStyles = {
   } as ViewStyle,
 
   TEXT: {
+    width: "100%",
     textAlign: "right",
     paddingHorizontal: spacing[5],
   } as TextStyle,

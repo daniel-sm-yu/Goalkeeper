@@ -75,7 +75,7 @@ export class Bar extends React.Component<BarProps> {
             width: widthInterpolated,
           }}
         />
-        <Text preset="bar" style={styles.TEXT}>
+        <Text preset="bar" style={styles.TEXT} numberOfLines={2} ellipsizeMode="middle">
           {name} for{target / 60 < 1 ? "" : ` ${Math.floor(target / 60)} h`}
           {target % 60 === 0 ? "" : ` ${target % 60} m`}
         </Text>
