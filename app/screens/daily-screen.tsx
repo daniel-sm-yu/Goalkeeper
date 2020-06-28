@@ -5,6 +5,7 @@ import { Screen, Bar, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
 import { spacing } from "../theme"
+import { toJS } from "mobx"
 
 const FLATLIST: ViewStyle = {
   paddingHorizontal: spacing[4],
@@ -29,10 +30,13 @@ export const DailyScreen: Component = observer(function DailyScreen() {
             color={item.color}
             current={item.current}
             target={item.target}
-            onPress={() => console.log("pressed")}
+            onPress={() => {
+              goalStore.setActive(goalStore.active === item.id ? "" : item.id)
+            }}
           />
         )}
         keyExtractor={item => item.id}
+        extraData={toJS(goalStore)}
       />
     </Screen>
   )

@@ -8,7 +8,7 @@ import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-nati
 export const GoalStoreModel = types
   .model("GoalStore")
   .props({
-    active: types.optional(types.identifier, ""),
+    active: types.optional(types.string, ""),
     goals: types.optional(types.array(GoalModel), []),
   })
   .views(self => ({
@@ -33,6 +33,9 @@ export const GoalStoreModel = types
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
       const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
       self.goals.replace(goalModels)
+    },
+    setActive: (id: string) => {
+      self.active = id
     },
   }))
   .actions(self => ({
