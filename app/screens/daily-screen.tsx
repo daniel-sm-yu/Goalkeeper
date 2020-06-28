@@ -17,7 +17,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // const navigation = useNavigation()
   return (
     <Screen preset="fixed">
-      <Header headerText="Daily Goals" />
+      <Header headerText="Today" />
       <FlatList
         style={FLATLIST}
         // data={require("./data.json").goals}

@@ -213,6 +213,15 @@ export const AddScreen: Component = observer(function AddScreen() {
                   type: "danger",
                   icon: { icon: "danger", position: "left" },
                 })
+              } else if (Number(hour) + Number(minute) / 60 > 24) {
+                nameInput.current.focus()
+                showMessage({
+                  message: "Not enough hours in the day, literally!",
+                  description: `Please enter something you can do in one day.`,
+                  type: "warning",
+                  icon: { icon: "warning", position: "left" },
+                  duration: 10000,
+                })
               } else {
                 goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
                 resetForm()
