@@ -14,7 +14,11 @@ export const GoalModel = types
     today: types.boolean,
   })
   .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
-  .actions(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
+  .actions(self => ({
+    addToCurrent: amount => {
+      self.current += amount
+    },
+  }))
 
 /**
   * Un-comment the following to omit model attributes from your snapshots (and from async storage).
