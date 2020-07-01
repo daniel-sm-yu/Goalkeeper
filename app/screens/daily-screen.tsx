@@ -24,13 +24,12 @@ export const DailyScreen: Component = observer(function DailyScreen() {
       if (goalStore.activeGoal) {
         load(SESSION_KEY).then(prevSession => {
           const minutesPassed = (Date.now() - prevSession) / (1000 * 60)
-          console.log(`${minutesPassed} minutes has been logged for ${goalStore.activeGoal.name}`)
+          console.log(`${minutesPassed.toFixed(1)} minutes added for ${goalStore.activeGoal.name}`)
           goalStore.activeGoal.addToCurrent(minutesPassed)
         })
       }
       remove(SESSION_KEY)
     } else {
-      console.log("background")
       save(SESSION_KEY, Date.now())
     }
   }

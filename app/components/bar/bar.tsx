@@ -57,7 +57,7 @@ export class Bar extends React.Component<BarProps> {
     })
 
     const activeStyle = active ? { backgroundColor: getColor(color) + "3D" } : {}
-    const completedStyle = current >= target ? { borderWidth: 8, borderColor: getColor(color) } : {}
+    const completedStyle = current >= target ? { borderWidth: 6, borderColor: getColor(color) } : {}
 
     return (
       <Ripple

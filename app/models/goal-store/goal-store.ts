@@ -24,7 +24,7 @@ export const GoalStoreModel = types
   .actions(self => ({
     startTimer: () => {
       if (self.activeGoal) {
-        interval = setInterval(() => self.activeGoal.addToCurrent(1), 1000 * 60)
+        interval = setInterval(() => self.activeGoal.addToCurrent(0.5), 1000 * 30)
       }
     },
     stopTimer: () => clearInterval(interval),
@@ -37,14 +37,14 @@ export const GoalStoreModel = types
       // add to storage
       console.log(self.goals)
     },
-    saveGoals: (goalSnapshots: GoalSnapshot[]) => {
-      const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
-      self.goals.replace(goalModels)
-    },
     setActive: (id: string) => {
       self.stopTimer()
       self.active = id
       self.startTimer()
+    },
+    saveGoals: (goalSnapshots: GoalSnapshot[]) => {
+      const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
+      self.goals.replace(goalModels)
     },
   }))
   .actions(self => ({
