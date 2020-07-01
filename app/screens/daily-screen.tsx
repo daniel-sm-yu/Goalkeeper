@@ -1,11 +1,12 @@
-import React, { FunctionComponent as Component } from "react"
+import React, { FunctionComponent as Component, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle, FlatList } from "react-native"
+import { AppState, ViewStyle, FlatList } from "react-native"
 import { Screen, Bar, Header } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
 import { spacing } from "../theme"
 import { toJS } from "mobx"
+import { save, load, remove } from "../utils/storage"
 
 const FLATLIST: ViewStyle = {
   paddingHorizontal: spacing[4],
@@ -13,9 +14,32 @@ const FLATLIST: ViewStyle = {
 
 export const DailyScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
+  const SESSION_KEY = "previous-session"
 
   // Pull in navigation via hook
   // const navigation = useNavigation()
+
+  const _handleAppStateChange = nextAppState => {
+    if (nextAppState === "active") {
+      if (goalStore.activeGoal) {
+        load(SESSION_KEY).then(prevSession => {
+          const minutesPassed = (Date.now() - prevSession) / (1000 * 60)
+          console.log(`${minutesPassed} minutes has been logged for ${goalStore.activeGoal.name}`)
+          goalStore.activeGoal.addToCurrent(minutesPassed)
+        })
+      }
+      remove(SESSION_KEY)
+    } else {
+      console.log("background")
+      save(SESSION_KEY, Date.now())
+    }
+  }
+
+  useEffect(() => {
+    AppState.addEventListener("change", _handleAppStateChange)
+    return () => AppState.removeEventListener("change", _handleAppStateChange)
+  }, [])
+
   return (
     <Screen preset="fixed">
       <Header headerText="Today" />

@@ -11,21 +11,20 @@ export const GoalStoreModel = types
     goals: types.optional(types.array(GoalModel), []),
   })
   .views(self => ({
+    get activeGoal() {
+      return self.goals.find(goal => goal.id === self.active)
+    },
     get dailyGoals() {
       return self.goals.filter(goal => goal.today)
     },
     get nonDailyGoals() {
       return self.goals.filter(goal => !goal.today)
     },
-    get goalCount() {
-      return self.goals.length
-    },
   }))
   .actions(self => ({
     startTimer: () => {
-      const activeGoal = self.goals.find(goal => goal.id === self.active)
-      if (activeGoal) {
-        interval = setInterval(() => activeGoal.addToCurrent(1), 1000)
+      if (self.activeGoal) {
+        interval = setInterval(() => self.activeGoal.addToCurrent(1), 1000 * 60)
       }
     },
     stopTimer: () => clearInterval(interval),
