@@ -6,7 +6,7 @@ import { Screen, Bar, Header } from "../components"
 import { useStores } from "../models"
 import { spacing } from "../theme"
 import { toJS } from "mobx"
-import { save, load, remove } from "../utils/storage"
+import { save, load } from "../utils/storage"
 
 const FLATLIST: ViewStyle = {
   paddingHorizontal: spacing[4],
@@ -20,19 +20,16 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // const navigation = useNavigation()
 
   const _handleAppStateChange = nextAppState => {
-    if (nextAppState === "active") {
-      if (goalStore.activeGoal) {
-        load(SESSION_KEY).then(prevSession => {
-          const minutesPassed = (Date.now() - prevSession) / (1000 * 60) // convert milliseconds to minutes
-          console.log(`${minutesPassed.toFixed(1)} minutes added for ${goalStore.activeGoal.name}`)
-          goalStore.activeGoal.addToCurrent(minutesPassed)
-        })
-      }
-      goalStore.startTimer()
-      remove(SESSION_KEY)
-    } else {
+    if (nextAppState === "background") {
       goalStore.stopTimer()
       save(SESSION_KEY, Date.now())
+    } else if (nextAppState === "active" && goalStore.activeGoal) {
+      goalStore.startTimer()
+      load(SESSION_KEY).then(prevSession => {
+        const minutesPassed = (Date.now() - prevSession) / (1000 * 60) // convert milliseconds to minutes
+        console.log(`${minutesPassed.toFixed(1)} minutes added for ${goalStore.activeGoal.name}`)
+        goalStore.activeGoal.addToCurrent(minutesPassed)
+      })
     }
   }
 
