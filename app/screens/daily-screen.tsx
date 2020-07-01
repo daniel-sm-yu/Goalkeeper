@@ -53,11 +53,11 @@ export const DailyScreen: Component = observer(function DailyScreen() {
     <Screen preset="fixed">
       <Header headerText="Today" />
       <DraggableFlatList
-        // data={require("./data.json").goals}
-        data={goalStore.dailyGoals}
+        data={goalStore.goalsToday}
         renderItem={barItem}
         keyExtractor={item => item.id}
         extraData={toJS(goalStore)}
+        onDragEnd={({ data }) => goalStore.setGoals(goalStore.goalsNotToday.concat(data))}
       />
     </Screen>
   )

@@ -14,10 +14,10 @@ export const GoalStoreModel = types
     get activeGoal() {
       return self.goals.find(goal => goal.id === self.active)
     },
-    get dailyGoals() {
+    get goalsToday() {
       return self.goals.filter(goal => goal.today)
     },
-    get nonDailyGoals() {
+    get goalsNotToday() {
       return self.goals.filter(goal => !goal.today)
     },
   }))
@@ -42,6 +42,9 @@ export const GoalStoreModel = types
       self.active = id
       self.startTimer()
     },
+    setGoals: (goals: Goal[]) => {
+      self.goals.replace(goals)
+    },
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
       const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
       self.goals.replace(goalModels)
@@ -56,7 +59,7 @@ export const GoalStoreModel = types
   .actions(self => ({
     afterCreate() {
       self.getGoals()
-      // self.saveGoals([]) // use to delete all goals
+      // self.setGoals([]) // use to delete all goals
     },
   }))
 
