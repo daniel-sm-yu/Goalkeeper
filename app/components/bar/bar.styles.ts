@@ -5,8 +5,10 @@ export const barStyles = {
   CONTAINER: {
     ...dimensions.bar,
     justifyContent: "center",
-    marginVertical: spacing[5],
-    elevation: 2,
+    margin: spacing[4],
+    marginBottom: spacing[5],
+    borderWidth: 4,
+    borderColor: color.background,
     backgroundColor: color.palette.grey,
   } as ViewStyle,
 
