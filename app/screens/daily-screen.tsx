@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component, useEffect } from "react"
+import React, { FunctionComponent as Component, useEffect, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { AppState, ViewStyle, FlatList } from "react-native"
 import { Screen, Bar, Header } from "../components"
@@ -23,13 +23,15 @@ export const DailyScreen: Component = observer(function DailyScreen() {
     if (nextAppState === "active") {
       if (goalStore.activeGoal) {
         load(SESSION_KEY).then(prevSession => {
-          const minutesPassed = (Date.now() - prevSession) / (1000 * 60)
+          const minutesPassed = (Date.now() - prevSession) / (1000 * 60) // convert milliseconds to minutes
           console.log(`${minutesPassed.toFixed(1)} minutes added for ${goalStore.activeGoal.name}`)
           goalStore.activeGoal.addToCurrent(minutesPassed)
         })
       }
+      goalStore.startTimer()
       remove(SESSION_KEY)
     } else {
+      goalStore.stopTimer()
       save(SESSION_KEY, Date.now())
     }
   }

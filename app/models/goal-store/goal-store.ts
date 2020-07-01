@@ -24,7 +24,7 @@ export const GoalStoreModel = types
   .actions(self => ({
     startTimer: () => {
       if (self.activeGoal) {
-        interval = setInterval(() => self.activeGoal.addToCurrent(0.5), 1000 * 30)
+        interval = setInterval(() => self.activeGoal.addToCurrent(0.1), 1000 * 6) // 6 seconds
       }
     },
     stopTimer: () => clearInterval(interval),

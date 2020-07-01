@@ -17,14 +17,22 @@ export interface BarProps {
 const getOpacity = completion => {
   if (completion === 0) {
     return "00"
-  } else if (completion < 3) {
+  } else if (completion < 2) {
+    return "52"
+  } else if (completion < 4) {
+    return "61"
+  } else if (completion < 6) {
     return "70"
-  } else if (completion < 7) {
-    return "85"
-  } else if (completion < 11) {
-    return "A0"
-  } else if (completion < 15) {
-    return "B5"
+  } else if (completion < 8) {
+    return "80"
+  } else if (completion < 10) {
+    return "8F"
+  } else if (completion < 12) {
+    return "9E"
+  } else if (completion < 14) {
+    return "AD"
+  } else if (completion < 16) {
+    return "BD"
   } else {
     return "CD"
   }
@@ -42,7 +50,7 @@ export class Bar extends React.Component<BarProps> {
     if (prevProps.current !== this.props.current) {
       Animated.timing(this.animation, {
         toValue: this.props.current / this.props.target,
-        duration: 3000,
+        duration: 6000,
       }).start()
     }
   }
@@ -57,11 +65,10 @@ export class Bar extends React.Component<BarProps> {
     })
 
     const activeStyle = active ? { backgroundColor: getColor(color) + "3D" } : {}
-    const completedStyle = current >= target ? { borderWidth: 6, borderColor: getColor(color) } : {}
 
     return (
       <Ripple
-        style={[styles.CONTAINER, activeStyle, completedStyle]}
+        style={[styles.CONTAINER, activeStyle]}
         rippleColor={getColor(color)}
         rippleOpacity={1}
         rippleDuration={750}
