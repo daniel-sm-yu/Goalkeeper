@@ -36,15 +36,13 @@ export const DailyScreen: Component = observer(function DailyScreen() {
 
   const barItem = ({ item, drag, isActive }) => (
     <Bar
-      isActive={item.id === goalStore.active}
+      isActive={item.id === goalStore.activeId}
       isDragging={isActive} // isActive comes from DraggableFlatList and is true when this item is being dragged
       name={item.name}
       color={item.color}
       current={item.current}
       target={item.target}
-      onPress={() => {
-        goalStore.setActive(goalStore.active === item.id ? "" : item.id)
-      }}
+      onPress={() => goalStore.setActiveId(item.id === goalStore.activeId ? "" : item.id)}
       onLongPress={drag}
     />
   )
