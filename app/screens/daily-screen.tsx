@@ -15,7 +15,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   // Pull in navigation via hook
   // const navigation = useNavigation()
 
-  const _handleAppStateChange = nextAppState => {
+  const handleAppStateChange = nextAppState => {
     if (nextAppState === "background") {
       goalStore.stopTimer()
       save(SESSION_KEY, Date.now())
@@ -30,12 +30,12 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   }
 
   useEffect(() => {
-    AppState.addEventListener("change", _handleAppStateChange)
-    return () => AppState.removeEventListener("change", _handleAppStateChange)
+    AppState.addEventListener("change", handleAppStateChange)
+    return () => AppState.removeEventListener("change", handleAppStateChange)
   }, [])
 
   const barItem = ({ item, drag, isActive }) => (
-    <Swiper>
+    <Swiper onSwipeableRightOpen={() => goalStore.deleteGoal("")}>
       <Bar
         isActive={item.id === goalStore.activeId}
         isDragging={isActive} // isActive comes from DraggableFlatList and is true when this item is being dragged
@@ -56,7 +56,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
         data={goalStore.goalsToday}
         renderItem={barItem}
         keyExtractor={item => item.id}
-        extraData={toJS(goalStore)}
+        extraData={(toJS(goalStore), goalStore.goals)}
         onDragEnd={({ data }) => goalStore.setGoals(goalStore.goalsNotToday.concat(data))}
       />
     </Screen>

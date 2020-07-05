@@ -6,19 +6,17 @@ import { RectButton } from "react-native-gesture-handler"
 
 import Swipeable from "react-native-gesture-handler/Swipeable"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
-import { useRef } from "react"
 
 const AnimatedIcon = Animated.createAnimatedComponent(MaterialCommunityIcons)
 
 export interface SwiperProps {
   children
+  onSwipeableRightOpen
 }
 
 export function Swiper(props: SwiperProps) {
   // grab the props
-  const { children } = props
-
-  const swipeableRow = useRef()
+  const { children, onSwipeableRightOpen } = props
 
   const renderLeftActions = (progress, dragX) => {
     const scale = dragX.interpolate({
@@ -27,7 +25,7 @@ export function Swiper(props: SwiperProps) {
       extrapolate: "clamp",
     })
     return (
-      <RectButton style={styles.leftAction} onPress={swipeableRow.close}>
+      <RectButton style={styles.leftAction}>
         <AnimatedIcon
           name="archive"
           size={30}
@@ -44,7 +42,7 @@ export function Swiper(props: SwiperProps) {
       extrapolate: "clamp",
     })
     return (
-      <RectButton style={styles.rightAction} onPress={swipeableRow.close}>
+      <RectButton style={styles.rightAction}>
         <AnimatedIcon
           name="delete-forever"
           size={30}
@@ -57,12 +55,10 @@ export function Swiper(props: SwiperProps) {
 
   return (
     <Swipeable
-      ref={swipeableRow}
-      friction={2}
-      leftThreshold={80}
-      rightThreshold={40}
+      friction={1.25}
       renderLeftActions={renderLeftActions}
       renderRightActions={renderRightActions}
+      onSwipeableRightOpen={onSwipeableRightOpen}
     >
       {children}
     </Swipeable>

@@ -16,6 +16,7 @@ export const swiperStyles = {
     marginHorizontal: 10,
   },
   rightAction: {
+    width: "20%",
     alignItems: "center",
     flexDirection: "row",
     backgroundColor: "#dd2c00",
