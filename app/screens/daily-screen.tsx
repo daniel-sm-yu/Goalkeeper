@@ -1,16 +1,12 @@
-import React, { FunctionComponent as Component, useEffect, useState } from "react"
+import React, { FunctionComponent as Component, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import { AppState, ViewStyle, FlatList } from "react-native"
-import { Screen, Bar, Header } from "../components"
+import { AppState } from "react-native"
+import { Screen, Bar, Header, Swiper } from "../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
-import { spacing } from "../theme"
 import { toJS } from "mobx"
 import { save, load } from "../utils/storage"
-
-const FLATLIST: ViewStyle = {
-  paddingHorizontal: spacing[4],
-}
+import DraggableFlatList from "react-native-draggable-flatlist"
 
 export const DailyScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
@@ -38,27 +34,30 @@ export const DailyScreen: Component = observer(function DailyScreen() {
     return () => AppState.removeEventListener("change", _handleAppStateChange)
   }, [])
 
+  const barItem = ({ item, drag, isActive }) => (
+    <Swiper>
+      <Bar
+        isActive={item.id === goalStore.activeId}
+        isDragging={isActive} // isActive comes from DraggableFlatList and is true when this item is being dragged
+        name={item.name}
+        color={item.color}
+        current={item.current}
+        target={item.target}
+        onPress={() => goalStore.setActiveId(item.id === goalStore.activeId ? "" : item.id)}
+        onLongPress={drag}
+      />
+    </Swiper>
+  )
+
   return (
     <Screen preset="fixed">
       <Header headerText="Today" />
-      <FlatList
-        style={FLATLIST}
-        // data={require("./data.json").goals}
-        data={goalStore.dailyGoals}
-        renderItem={({ item }) => (
-          <Bar
-            active={item.id === goalStore.active}
-            name={item.name}
-            color={item.color}
-            current={item.current}
-            target={item.target}
-            onPress={() => {
-              goalStore.setActive(goalStore.active === item.id ? "" : item.id)
-            }}
-          />
-        )}
+      <DraggableFlatList
+        data={goalStore.goalsToday}
+        renderItem={barItem}
         keyExtractor={item => item.id}
         extraData={toJS(goalStore)}
+        onDragEnd={({ data }) => goalStore.setGoals(goalStore.goalsNotToday.concat(data))}
       />
     </Screen>
   )

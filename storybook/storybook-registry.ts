@@ -1,3 +1,4 @@
+require("../app/components/swiper/swiper.story")
 require("../app/components/color-button/color-button.story")
 require("../app/components/bar/bar.story")
 require("../app/components/text/text.story")

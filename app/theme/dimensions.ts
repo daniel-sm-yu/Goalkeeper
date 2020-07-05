@@ -5,9 +5,8 @@ export const dimensions = {
     size: 24,
   },
   bar: {
-    width: "100%",
-    height: 64,
-    borderRadius: 32,
+    height: 72,
+    borderRadius: 36,
   } as ViewStyle,
   colorButton: {
     width: "25%",

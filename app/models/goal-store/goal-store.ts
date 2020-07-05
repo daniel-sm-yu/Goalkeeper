@@ -7,17 +7,17 @@ let interval
 export const GoalStoreModel = types
   .model("GoalStore")
   .props({
-    active: types.optional(types.string, ""),
+    activeId: types.optional(types.string, ""),
     goals: types.optional(types.array(GoalModel), []),
   })
   .views(self => ({
     get activeGoal() {
-      return self.goals.find(goal => goal.id === self.active)
+      return self.goals.find(goal => goal.id === self.activeId)
     },
-    get dailyGoals() {
+    get goalsToday() {
       return self.goals.filter(goal => goal.today)
     },
-    get nonDailyGoals() {
+    get goalsNotToday() {
       return self.goals.filter(goal => !goal.today)
     },
   }))
@@ -37,10 +37,13 @@ export const GoalStoreModel = types
       // add to storage
       console.log(self.goals)
     },
-    setActive: (id: string) => {
+    setActiveId: (id: string) => {
       self.stopTimer()
-      self.active = id
+      self.activeId = id
       self.startTimer()
+    },
+    setGoals: (goals: Goal[]) => {
+      self.goals.replace(goals)
     },
     saveGoals: (goalSnapshots: GoalSnapshot[]) => {
       const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
@@ -56,7 +59,7 @@ export const GoalStoreModel = types
   .actions(self => ({
     afterCreate() {
       self.getGoals()
-      // self.saveGoals([]) // use to delete all goals
+      // self.setGoals([]) // use to delete all goals
     },
   }))
 
