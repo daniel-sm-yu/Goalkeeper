@@ -1,13 +1,10 @@
 import * as React from "react"
-import { Animated } from "react-native"
+import { View } from "react-native"
 import { swiperStyles as styles } from "./swiper.styles"
-
-import { RectButton } from "react-native-gesture-handler"
+import { color } from "../../theme"
 
 import Swipeable from "react-native-gesture-handler/Swipeable"
-import { MaterialCommunityIcons } from "@expo/vector-icons"
-
-const AnimatedIcon = Animated.createAnimatedComponent(MaterialCommunityIcons)
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons"
 
 export interface SwiperProps {
   children
@@ -18,48 +15,28 @@ export function Swiper(props: SwiperProps) {
   // grab the props
   const { children, onSwipeableRightOpen } = props
 
-  const renderLeftActions = (progress, dragX) => {
-    const scale = dragX.interpolate({
-      inputRange: [0, 80],
-      outputRange: [0, 1],
-      extrapolate: "clamp",
-    })
-    return (
-      <RectButton style={styles.leftAction}>
-        <AnimatedIcon
-          name="archive"
-          size={30}
-          color="#fff"
-          style={[styles.actionIcon, { transform: [{ scale }] }]}
-        />
-      </RectButton>
-    )
-  }
   const renderRightActions = (progress, dragX) => {
-    const scale = dragX.interpolate({
-      inputRange: [-80, 0],
-      outputRange: [1, 0],
-      extrapolate: "clamp",
-    })
     return (
-      <RectButton style={styles.rightAction}>
-        <AnimatedIcon
-          name="delete-forever"
+      <View style={styles.RIGHT_ACTION}>
+        <MaterialCommunityIcons
+          name="delete"
           size={30}
-          color="#fff"
-          style={[styles.actionIcon, { transform: [{ scale }] }]}
+          color={color.textPrimary}
+          style={styles.ICON}
         />
-      </RectButton>
+        <MaterialIcons name="edit" size={30} color={color.textPrimary} style={styles.ICON} />
+        <MaterialCommunityIcons
+          name="close"
+          size={30}
+          color={color.textPrimary}
+          style={styles.ICON}
+        />
+      </View>
     )
   }
 
   return (
-    <Swipeable
-      friction={1.25}
-      renderLeftActions={renderLeftActions}
-      renderRightActions={renderRightActions}
-      onSwipeableRightOpen={onSwipeableRightOpen}
-    >
+    <Swipeable renderRightActions={renderRightActions} onSwipeableRightOpen={onSwipeableRightOpen}>
       {children}
     </Swipeable>
   )

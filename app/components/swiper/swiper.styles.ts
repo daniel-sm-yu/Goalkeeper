@@ -1,26 +1,19 @@
 import { ViewStyle } from "react-native"
+import { spacing } from "../../theme"
 
 export const swiperStyles = {
   WRAPPER: {
     justifyContent: "center",
   } as ViewStyle,
-  leftAction: {
-    flex: 1,
-    backgroundColor: "#388e3c",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    flexDirection: "row",
-  } as ViewStyle,
-  actionIcon: {
-    width: 30,
-    marginHorizontal: 10,
+
+  ICON: {
+    marginHorizontal: spacing[3],
   },
-  rightAction: {
-    width: "20%",
+
+  RIGHT_ACTION: {
+    justifyContent: "flex-end",
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#dd2c00",
-    flex: 1,
-    justifyContent: "flex-end",
+    paddingRight: spacing[3],
   } as ViewStyle,
 }
