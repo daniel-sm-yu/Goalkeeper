@@ -1,4 +1,4 @@
-import React, { FunctionComponent as Component, useRef } from "react"
+import React, { FunctionComponent as Component, useRef, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
@@ -70,11 +70,11 @@ export const AddScreen: Component = observer(function AddScreen() {
   const { goalStore } = useStores()
   const navigation = useNavigation()
 
-  const [name, setName] = React.useState("")
-  const [hour, setHour] = React.useState("")
-  const [minute, setMinute] = React.useState("")
-  const [selectedColor, setSelectedColor] = React.useState("")
-  const [startToday, setStartToday] = React.useState(false)
+  const [name, setName] = useState("")
+  const [hour, setHour] = useState("")
+  const [minute, setMinute] = useState("")
+  const [selectedColor, setSelectedColor] = useState("")
+  const [startToday, setStartToday] = useState(false)
 
   const resetForm = () => {
     setName("")
