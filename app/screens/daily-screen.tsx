@@ -35,7 +35,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   }, [])
 
   const barItem = ({ item, drag, isActive }) => (
-    <Swiper>
+    <Swiper onEdit={() => console.log("edit")} onDelete={() => goalStore.deleteGoal(item.id)}>
       <Bar
         isActive={item.id === goalStore.activeId}
         isDragging={isActive} // isActive comes from DraggableFlatList and is true when this item is being dragged

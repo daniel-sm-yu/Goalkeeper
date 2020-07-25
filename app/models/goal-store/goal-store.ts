@@ -49,23 +49,6 @@ export const GoalStoreModel = types
       self.activeId = id
       self.startTimer()
     },
-
-    saveGoals: (goalSnapshots: GoalSnapshot[]) => {
-      const goalModels: Goal[] = goalSnapshots.map(goal => GoalModel.create(goal))
-      self.goals.replace(goalModels)
-    },
-  }))
-  .actions(self => ({
-    getGoals: () => {
-      // get goals from storage
-      // self.saveGoals(goals)
-    },
-  }))
-  .actions(self => ({
-    afterCreate() {
-      self.getGoals()
-      // self.setGoals([]) // use to delete all goals
-    },
   }))
 
 /**
