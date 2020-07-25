@@ -2,7 +2,7 @@ import * as React from "react"
 import { Animated } from "react-native"
 import { Text } from "../"
 import { barStyles as styles } from "./bar.styles"
-import { getColor, dimensions } from "../../theme"
+import { getColor, getBackgroundColor, dimensions } from "../../theme"
 import Ripple from "react-native-material-ripple" // https://www.npmjs.com/package/react-native-material-ripple
 
 export interface BarProps {
@@ -66,8 +66,8 @@ export class Bar extends React.Component<BarProps> {
       extrapolate: "clamp",
     })
 
-    const activeStyle = isActive && !isDragging ? { backgroundColor: getColor(color) + "3D" } : {}
-    const draggingStyle = isDragging ? { elevation: 4, borderColor: getColor(color) + "3D" } : {}
+    const activeStyle = isActive ? { backgroundColor: getBackgroundColor(color) } : {}
+    const draggingStyle = isDragging ? { elevation: 4, borderColor: getColor(color) + "55" } : {}
 
     return (
       <Ripple

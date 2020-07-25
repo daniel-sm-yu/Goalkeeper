@@ -60,3 +60,22 @@ export const getColor = color => {
       return palette.lightGrey
   }
 }
+
+export const getBackgroundColor = color => {
+  switch (color) {
+    case "blue":
+      return palette.darkBlue
+    case "green":
+      return palette.darkGreen
+    case "pink":
+      return palette.darkPink
+    case "yellow":
+      return palette.darkYellow
+    case "purple":
+      return palette.darkPurple
+    case "orange":
+      return palette.darkOrange
+    default:
+      return palette.grey
+  }
+}
