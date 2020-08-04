@@ -1,6 +1,6 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
 import { GoalModel, Goal } from "../goal/goal"
-import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-native-uuid
+import uuid from "react-native-uuid"
 
 let interval
 
@@ -14,35 +14,26 @@ export const GoalStoreModel = types
     get activeGoal() {
       return self.goals.find(goal => goal.id === self.activeId)
     },
-    get goalsToday() {
-      return self.goals.filter(goal => goal.today)
-    },
-    get goalsNotToday() {
-      return self.goals.filter(goal => !goal.today)
-    },
   }))
   .actions(self => ({
+    setGoals: (goals: Goal[]) => {
+      self.goals.replace(goals)
+    },
     startTimer: () => {
       if (self.activeGoal) {
         interval = setInterval(() => self.activeGoal.addToCurrent(0.1), 1000 * 6) // 6 seconds
       }
     },
     stopTimer: () => clearInterval(interval),
-    setGoals: (goals: Goal[]) => {
-      self.goals.replace(goals)
-    },
   }))
   .actions(self => ({
-    addGoal: (name: string, hour: number, minute: number, color: string, today: boolean) => {
-      const goalData = { id: uuid.v4(), name, target: hour * 60 + minute, color, today }
+    addGoal: (name: string, hour: number, minute: number, color: string, daily: boolean) => {
+      const goalData = { id: uuid.v4(), name, target: hour * 60 + minute, color, daily }
       const newGoal = GoalModel.create(goalData)
       self.goals.push(newGoal)
-      // add to storage
-      console.log(self.goals)
     },
     deleteGoal: (id: string) => {
       self.setGoals(self.goals.filter(goal => goal.id !== id))
-      // delete from storage
     },
     setActiveId: (id: string) => {
       self.stopTimer()

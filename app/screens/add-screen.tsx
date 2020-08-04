@@ -74,14 +74,14 @@ export const AddScreen: Component = observer(function AddScreen() {
   const [hour, setHour] = useState("")
   const [minute, setMinute] = useState("")
   const [selectedColor, setSelectedColor] = useState("")
-  const [startToday, setStartToday] = useState(false)
+  const [repeatDaily, setRepeatDaily] = useState(false)
 
   const resetForm = () => {
     setName("")
     setHour("")
     setMinute("")
     setSelectedColor("")
-    setStartToday(false)
+    setRepeatDaily(false)
   }
 
   const nameInput = useRef()
@@ -178,7 +178,7 @@ export const AddScreen: Component = observer(function AddScreen() {
         </View>
 
         <View style={START_TODAY_CONTAINER}>
-          <Text preset="formQuestion">Start today?</Text>
+          <Text preset="formQuestion">Repeat Daily?</Text>
           <Switch
             style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
             trackColor={{
@@ -189,8 +189,8 @@ export const AddScreen: Component = observer(function AddScreen() {
             }}
             thumbColor={color.palette.white}
             ios_backgroundColor={color.palette.white}
-            onValueChange={() => setStartToday(previousState => !previousState)}
-            value={startToday}
+            onValueChange={() => setRepeatDaily(previousState => !previousState)}
+            value={repeatDaily}
           />
         </View>
 
@@ -226,7 +226,7 @@ export const AddScreen: Component = observer(function AddScreen() {
                   duration: 10000,
                 })
               } else {
-                goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, startToday)
+                goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
                 resetForm()
                 showMessage({
                   message: `New Goal: ${name}`,
@@ -235,7 +235,7 @@ export const AddScreen: Component = observer(function AddScreen() {
                   type: "success",
                   icon: { icon: "success", position: "left" },
                   onPress: () =>
-                    startToday ? navigation.navigate("daily") : navigation.navigate("backlog"),
+                    repeatDaily ? navigation.navigate("daily") : navigation.navigate("backlog"),
                 })
               }
             }}

@@ -11,7 +11,7 @@ export const GoalModel = types
     target: types.number,
     current: types.optional(types.number, 0),
     color: types.string,
-    today: types.boolean,
+    daily: types.boolean,
   })
   .views(self => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions(self => ({
