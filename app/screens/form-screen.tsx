@@ -1,6 +1,6 @@
 import React, { FunctionComponent as Component, useRef, useState } from "react"
 import { observer } from "mobx-react-lite"
-import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
+import { View, ViewStyle, TextInput, Switch } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native"
 import { useStores } from "../models"
@@ -9,11 +9,9 @@ import { showMessage } from "react-native-flash-message"
 import { PrimaryParamList } from "../navigation/primary-navigator"
 
 const CONTAINER = {
-  height: Dimensions.get("window").height - 160,
-  justifyContent: "space-between",
-  paddingTop: spacing[1],
-  paddingBottom: spacing[5],
-  paddingHorizontal: spacing[5],
+  flex: 1,
+  justifyContent: "space-evenly",
+  paddingHorizontal: spacing[4],
 } as ViewStyle
 
 const GOAL_CONTAINER = {
@@ -91,8 +89,8 @@ export const FormScreen: Component = observer(function AddScreen() {
   const minuteInput = useRef()
 
   return (
-    <Screen preset="scroll">
-      <Header headerText="New Goal" />
+    <Screen preset="fixed">
+      <Header headerText={params ? "Edit Goal" : "New Goal"} />
       <View style={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
         <View>

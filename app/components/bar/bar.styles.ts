@@ -6,7 +6,7 @@ export const barStyles = {
     ...dimensions.bar,
     justifyContent: "center",
     margin: spacing[4],
-    marginBottom: spacing[5],
+    marginTop: spacing[5],
     borderWidth: 4,
     borderColor: color.background,
     backgroundColor: color.palette.grey,

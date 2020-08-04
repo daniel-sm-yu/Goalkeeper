@@ -12,6 +12,7 @@ const ROOT: ViewStyle = {
   flexDirection: "row",
   alignItems: "center",
   padding: spacing[4],
+  paddingBottom: spacing[3],
   justifyContent: "flex-start",
 }
 const TITLE: TextStyle = { textAlign: "right" }
