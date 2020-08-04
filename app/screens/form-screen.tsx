@@ -66,7 +66,7 @@ const BUTTON_CONTAINER = {
 
 const opacity = "C0"
 
-export const AddScreen: Component = observer(function AddScreen() {
+export const FormScreen: Component = observer(function AddScreen() {
   const { goalStore } = useStores()
   const navigation = useNavigation()
 

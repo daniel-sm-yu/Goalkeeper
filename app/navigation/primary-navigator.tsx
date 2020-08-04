@@ -1,6 +1,6 @@
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { DailyScreen, AddScreen } from "../screens"
+import { GoalsScreen, FormScreen } from "../screens"
 
 type PrimaryParamList = {
   goals: undefined
@@ -18,8 +18,8 @@ export function PrimaryNavigator() {
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen name="goals" component={DailyScreen} />
-      <Stack.Screen name="form" component={AddScreen} />
+      <Stack.Screen name="goals" component={GoalsScreen} />
+      <Stack.Screen name="form" component={FormScreen} />
     </Stack.Navigator>
   )
 }

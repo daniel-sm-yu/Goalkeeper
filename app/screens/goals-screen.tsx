@@ -16,7 +16,7 @@ const ADD_BUTTON = {
   paddingBottom: spacing[5],
 } as ViewStyle
 
-export const DailyScreen: Component = observer(function DailyScreen() {
+export const GoalsScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
   const navigation = useNavigation()
   const SESSION_KEY = "previous-session"
@@ -66,7 +66,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
 
   return (
     <Screen preset="fixed">
-      <Header headerText="Today" />
+      <Header headerText="Today's Goals" />
       <DraggableFlatList
         data={goalStore.goals}
         renderItem={barItem}
