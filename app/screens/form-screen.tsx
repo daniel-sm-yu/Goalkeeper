@@ -205,7 +205,7 @@ export const FormScreen: Component = observer(function AddScreen() {
             }}
           />
           <Button
-            text="Add Goal"
+            text={params ? "Save Changes" : "Add Goal"}
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
             onPress={() => {
               if (!name) {
