@@ -7,9 +7,11 @@ import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
 import { showMessage } from "react-native-flash-message"
 import { PrimaryParamList } from "../navigation/primary-navigator"
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
 
 const CONTAINER = {
   flex: 1,
+  minHeight: 580,
   justifyContent: "space-evenly",
   paddingHorizontal: spacing[4],
 } as ViewStyle
@@ -91,7 +93,7 @@ export const FormScreen: Component = observer(function AddScreen() {
   return (
     <Screen preset="fixed">
       <Header headerText={params ? "Edit Goal" : "New Goal"} />
-      <View style={CONTAINER}>
+      <KeyboardAwareScrollView contentContainerStyle={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
         <View>
           <View style={GOAL_CONTAINER}>
@@ -246,7 +248,7 @@ export const FormScreen: Component = observer(function AddScreen() {
             }}
           />
         </View>
-      </View>
+      </KeyboardAwareScrollView>
     </Screen>
   )
 })
