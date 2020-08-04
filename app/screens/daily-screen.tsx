@@ -1,20 +1,25 @@
 import React, { FunctionComponent as Component, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import { AppState } from "react-native"
+import { AppState, ViewStyle, TouchableOpacity } from "react-native"
 import { Screen, Bar, Header, Swiper } from "../components"
-// import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
 import { toJS } from "mobx"
 import { save, load } from "../utils/storage"
 import DraggableFlatList from "react-native-draggable-flatlist"
 import { showMessage } from "react-native-flash-message"
+import { MaterialIcons } from "@expo/vector-icons"
+import { color, spacing } from "../theme"
+
+const ADD_BUTTON = {
+  alignItems: "center",
+  paddingBottom: spacing[5],
+} as ViewStyle
 
 export const DailyScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
+  const navigation = useNavigation()
   const SESSION_KEY = "previous-session"
-
-  // Pull in navigation via hook
-  // const navigation = useNavigation()
 
   const handleAppStateChange = nextAppState => {
     if (nextAppState === "background") {
@@ -41,7 +46,7 @@ export const DailyScreen: Component = observer(function DailyScreen() {
       onDelete={() => {
         goalStore.deleteGoal(item.id)
         showMessage({
-          message: `${item.name} has been deleted`,
+          message: `Deleted Goal: ${item.name}`,
           icon: { icon: "info", position: "left" },
         })
       }}
@@ -67,7 +72,12 @@ export const DailyScreen: Component = observer(function DailyScreen() {
         renderItem={barItem}
         keyExtractor={item => item.id}
         extraData={(toJS(goalStore), goalStore.goals)}
-        onDragEnd={({ data }) => goalStore.setGoals(goalStore.goalsNotToday.concat(data))}
+        onDragEnd={({ data }) => goalStore.setGoals(data)}
+        ListFooterComponent={
+          <TouchableOpacity style={ADD_BUTTON} onPress={() => navigation.navigate("form")}>
+            <MaterialIcons name="add" size={42} color={color.palette.lightGrey} />
+          </TouchableOpacity>
+        }
       />
     </Screen>
   )

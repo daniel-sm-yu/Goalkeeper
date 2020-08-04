@@ -234,8 +234,7 @@ export const AddScreen: Component = observer(function AddScreen() {
                   titleStyle: { textTransform: "capitalize" },
                   type: "success",
                   icon: { icon: "success", position: "left" },
-                  onPress: () =>
-                    repeatDaily ? navigation.navigate("daily") : navigation.navigate("backlog"),
+                  onPress: () => navigation.navigate("goals"),
                 })
               }
             }}
