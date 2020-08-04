@@ -1,5 +1,5 @@
 import { Instance, SnapshotOut, types } from "mobx-state-tree"
-import { GoalModel, GoalSnapshot, Goal } from "../goal/goal"
+import { GoalModel, Goal } from "../goal/goal"
 import uuid from "react-native-uuid" // https://www.npmjs.com/package/react-native-uuid
 
 let interval

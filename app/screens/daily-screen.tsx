@@ -7,6 +7,7 @@ import { useStores } from "../models"
 import { toJS } from "mobx"
 import { save, load } from "../utils/storage"
 import DraggableFlatList from "react-native-draggable-flatlist"
+import { showMessage } from "react-native-flash-message"
 
 export const DailyScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
@@ -35,7 +36,16 @@ export const DailyScreen: Component = observer(function DailyScreen() {
   }, [])
 
   const barItem = ({ item, drag, isActive }) => (
-    <Swiper onEdit={() => console.log("edit")} onDelete={() => goalStore.deleteGoal(item.id)}>
+    <Swiper
+      onEdit={() => console.log("edit")}
+      onDelete={() => {
+        goalStore.deleteGoal(item.id)
+        showMessage({
+          message: `${item.name} has been deleted`,
+          icon: { icon: "info", position: "left" },
+        })
+      }}
+    >
       <Bar
         isActive={item.id === goalStore.activeId}
         isDragging={isActive} // isActive comes from DraggableFlatList and is true when this item is being dragged
