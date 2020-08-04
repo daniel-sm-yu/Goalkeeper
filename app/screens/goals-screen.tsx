@@ -10,6 +10,8 @@ import DraggableFlatList from "react-native-draggable-flatlist"
 import { showMessage } from "react-native-flash-message"
 import { MaterialIcons } from "@expo/vector-icons"
 import { color, spacing } from "../theme"
+import { StackNavigationProp } from "@react-navigation/stack"
+import { PrimaryParamList } from "../navigation"
 
 const ADD_BUTTON = {
   alignItems: "center",
@@ -18,7 +20,7 @@ const ADD_BUTTON = {
 
 export const GoalsScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
-  const navigation = useNavigation()
+  const navigation = useNavigation<StackNavigationProp<PrimaryParamList, "goals">>()
   const SESSION_KEY = "previous-session"
 
   const handleAppStateChange = nextAppState => {
@@ -42,7 +44,7 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
 
   const barItem = ({ item, drag, isActive }) => (
     <Swiper
-      onEdit={() => console.log("edit")}
+      onEdit={() => navigation.navigate("form", { id: item.id })}
       onDelete={() => {
         goalStore.deleteGoal(item.id)
         showMessage({

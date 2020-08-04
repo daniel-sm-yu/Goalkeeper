@@ -2,10 +2,11 @@ import React, { FunctionComponent as Component, useRef, useState } from "react"
 import { observer } from "mobx-react-lite"
 import { View, ViewStyle, TextInput, Switch, Dimensions } from "react-native"
 import { Screen, Header, Text, ColorButton, Button } from "../components"
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation, useRoute, RouteProp } from "@react-navigation/native"
 import { useStores } from "../models"
 import { color, spacing, typography, getColor } from "../theme"
 import { showMessage } from "react-native-flash-message"
+import { PrimaryParamList } from "../navigation/primary-navigator"
 
 const CONTAINER = {
   height: Dimensions.get("window").height - 160,
@@ -69,6 +70,7 @@ const opacity = "C0"
 export const FormScreen: Component = observer(function AddScreen() {
   const { goalStore } = useStores()
   const navigation = useNavigation()
+  const { params } = useRoute<RouteProp<PrimaryParamList, "form">>()
 
   const [name, setName] = useState("")
   const [hour, setHour] = useState("")
@@ -195,7 +197,13 @@ export const FormScreen: Component = observer(function AddScreen() {
         </View>
 
         <View style={BUTTON_CONTAINER}>
-          <Button text="Cancel" onPress={resetForm} />
+          <Button
+            text="Cancel"
+            onPress={() => {
+              resetForm()
+              navigation.goBack()
+            }}
+          />
           <Button
             text="Add Goal"
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
@@ -234,7 +242,7 @@ export const FormScreen: Component = observer(function AddScreen() {
                   titleStyle: { textTransform: "capitalize" },
                   type: "success",
                   icon: { icon: "success", position: "left" },
-                  onPress: () => navigation.navigate("goals"),
+                  onPress: () => navigation.goBack(),
                 })
               }
             }}

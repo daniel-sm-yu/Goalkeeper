@@ -2,9 +2,9 @@ import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
 import { GoalsScreen, FormScreen } from "../screens"
 
-type PrimaryParamList = {
+export type PrimaryParamList = {
   goals: undefined
-  form: undefined
+  form: { id: string } | undefined
 }
 
 const Stack = createStackNavigator<PrimaryParamList>()
