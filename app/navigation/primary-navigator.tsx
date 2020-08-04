@@ -1,56 +1,25 @@
 import React from "react"
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs"
-import { DailyScreen, BacklogScreen, AddScreen, ProfileScreen } from "../screens"
-import { MaterialCommunityIcons, FontAwesome, FontAwesome5 } from "@expo/vector-icons"
-import { color, dimensions } from "../theme"
+import { createStackNavigator } from "@react-navigation/stack"
+import { DailyScreen, AddScreen } from "../screens"
 
 type PrimaryParamList = {
-  daily: undefined
-  backlog: undefined
-  add: undefined
-  profile: undefined
+  goals: undefined
+  form: undefined
 }
 
-const Tabs = createMaterialTopTabNavigator<PrimaryParamList>()
+const Stack = createStackNavigator<PrimaryParamList>()
 
 export function PrimaryNavigator() {
   return (
-    <Tabs.Navigator
-      initialRouteName="daily"
-      backBehavior="history"
-      tabBarPosition="bottom"
-      tabBarOptions={{
-        activeTintColor: color.active,
-        inactiveTintColor: color.inactive,
-        showIcon: true,
-        showLabel: false,
-        tabStyle: {
-          borderTopWidth: 1,
-          borderColor: color.background,
-          backgroundColor: color.palette.grey,
-        },
+    <Stack.Navigator
+      initialRouteName="goals"
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
       }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => {
-          const size = dimensions.icon.size
-          if (route.name === "daily") {
-            return <FontAwesome name="bars" color={color} size={size} />
-          } else if (route.name === "backlog") {
-            return <FontAwesome5 name="grip-vertical" color={color} size={size} />
-          } else if (route.name === "add") {
-            return <FontAwesome name="plus-square" color={color} size={size} />
-          } else if (route.name === "profile") {
-            return <MaterialCommunityIcons name="account" color={color} size={size} />
-          } else {
-            return null
-          }
-        },
-      })}
     >
-      <Tabs.Screen name="daily" component={DailyScreen} />
-      <Tabs.Screen name="backlog" component={BacklogScreen} />
-      <Tabs.Screen name="add" component={AddScreen} />
-      <Tabs.Screen name="profile" component={ProfileScreen} />
-    </Tabs.Navigator>
+      <Stack.Screen name="goals" component={DailyScreen} />
+      <Stack.Screen name="form" component={AddScreen} />
+    </Stack.Navigator>
   )
 }
