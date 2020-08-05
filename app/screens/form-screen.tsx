@@ -80,14 +80,6 @@ export const FormScreen: Component = observer(function AddScreen() {
   const [selectedColor, setSelectedColor] = useState(goal ? goal.color : "")
   const [repeatDaily, setRepeatDaily] = useState(goal ? goal.daily : false)
 
-  const resetForm = () => {
-    setName("")
-    setHour("")
-    setMinute("")
-    setSelectedColor("")
-    setRepeatDaily(false)
-  }
-
   const nameInput = useRef()
   const hourInput = useRef()
   const minuteInput = useRef()
@@ -199,13 +191,7 @@ export const FormScreen: Component = observer(function AddScreen() {
         </View>
 
         <View style={BUTTON_CONTAINER}>
-          <Button
-            text="Cancel"
-            onPress={() => {
-              resetForm()
-              navigation.goBack()
-            }}
-          />
+          <Button text="Cancel" onPress={() => navigation.goBack()} />
           <Button
             text={goal ? "Save Changes" : "Add Goal"}
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
@@ -262,14 +248,14 @@ export const FormScreen: Component = observer(function AddScreen() {
                   })
                 } else {
                   goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
-                  resetForm()
+                  navigation.goBack()
                   showMessage({
                     message: `New Goal: ${name}`,
-                    description: "Tap here to see it.",
+                    description: "Tap here to add another goal.",
                     titleStyle: { textTransform: "capitalize" },
                     type: "success",
                     icon: { icon: "success", position: "left" },
-                    onPress: () => navigation.goBack(),
+                    onPress: () => navigation.navigate("form"),
                   })
                 }
               }

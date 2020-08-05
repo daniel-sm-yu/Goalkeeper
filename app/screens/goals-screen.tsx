@@ -15,7 +15,8 @@ import { PrimaryParamList } from "../navigation"
 
 const ADD_BUTTON_CONTAINER = {
   alignItems: "center",
-  margin: spacing[5],
+  marginTop: spacing[5],
+  marginBottom: spacing[7],
 } as ViewStyle
 
 const ADD_BUTTON = {
