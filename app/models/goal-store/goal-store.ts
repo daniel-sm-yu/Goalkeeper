@@ -19,6 +19,9 @@ export const GoalStoreModel = types
     setGoals: (goals: Goal[]) => {
       self.goals.replace(goals)
     },
+    getGoal: (id: string) => {
+      return self.goals.find(goal => goal.id === id)
+    },
     startTimer: () => {
       if (self.activeGoal) {
         interval = setInterval(() => self.activeGoal.addToCurrent(0.1), 1000 * 6) // 6 seconds
@@ -31,6 +34,19 @@ export const GoalStoreModel = types
       const goalData = { id: uuid.v4(), name, target: hour * 60 + minute, color, daily }
       const newGoal = GoalModel.create(goalData)
       self.goals.push(newGoal)
+    },
+    editGoal: (
+      id: string,
+      name: string,
+      hour: number,
+      minute: number,
+      color: string,
+      daily: boolean,
+    ) => {
+      self.getGoal(id).name = name
+      self.getGoal(id).target = hour * 60 + minute
+      self.getGoal(id).color = color
+      self.getGoal(id).daily = daily
     },
     deleteGoal: (id: string) => {
       self.setGoals(self.goals.filter(goal => goal.id !== id))

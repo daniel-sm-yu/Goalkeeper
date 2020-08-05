@@ -72,11 +72,13 @@ export const FormScreen: Component = observer(function AddScreen() {
   const navigation = useNavigation()
   const { params } = useRoute<RouteProp<PrimaryParamList, "form">>()
 
-  const [name, setName] = useState("")
-  const [hour, setHour] = useState("")
-  const [minute, setMinute] = useState("")
-  const [selectedColor, setSelectedColor] = useState("")
-  const [repeatDaily, setRepeatDaily] = useState(false)
+  const goal = params ? goalStore.getGoal(params.id) : null
+
+  const [name, setName] = useState(goal ? goal.name : "")
+  const [hour, setHour] = useState(goal ? Math.floor(goal.target / 60).toString() : "")
+  const [minute, setMinute] = useState(goal ? (goal.target % 60).toString() : "")
+  const [selectedColor, setSelectedColor] = useState(goal ? goal.color : "")
+  const [repeatDaily, setRepeatDaily] = useState(goal ? goal.daily : false)
 
   const resetForm = () => {
     setName("")
@@ -92,7 +94,7 @@ export const FormScreen: Component = observer(function AddScreen() {
 
   return (
     <Screen preset="fixed">
-      <Header headerText={params ? "Edit Goal" : "New Goal"} />
+      <Header headerText={goal ? "Edit Goal" : "New Goal"} />
       <KeyboardAwareScrollView contentContainerStyle={CONTAINER}>
         <Text preset="formQuestion">What will you do?</Text>
         <View>
@@ -205,7 +207,7 @@ export const FormScreen: Component = observer(function AddScreen() {
             }}
           />
           <Button
-            text={params ? "Save Changes" : "Add Goal"}
+            text={goal ? "Save Changes" : "Add Goal"}
             style={{ backgroundColor: color.palette.lightGrey + opacity }}
             onPress={() => {
               if (!name) {
@@ -241,16 +243,35 @@ export const FormScreen: Component = observer(function AddScreen() {
                   icon: { icon: "danger", position: "left" },
                 })
               } else {
-                goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
-                resetForm()
-                showMessage({
-                  message: `New Goal: ${name}`,
-                  description: "Tap here to see it.",
-                  titleStyle: { textTransform: "capitalize" },
-                  type: "success",
-                  icon: { icon: "success", position: "left" },
-                  onPress: () => navigation.goBack(),
-                })
+                if (goal) {
+                  goalStore.editGoal(
+                    goal.id,
+                    name,
+                    Number(hour),
+                    Number(minute),
+                    selectedColor,
+                    repeatDaily,
+                  )
+                  navigation.goBack()
+                  showMessage({
+                    message: `Edited Goal: ${name}`,
+                    description: "Changes were successfully saved.",
+                    titleStyle: { textTransform: "capitalize" },
+                    type: "info",
+                    icon: { icon: "info", position: "left" },
+                  })
+                } else {
+                  goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
+                  resetForm()
+                  showMessage({
+                    message: `New Goal: ${name}`,
+                    description: "Tap here to see it.",
+                    titleStyle: { textTransform: "capitalize" },
+                    type: "success",
+                    icon: { icon: "success", position: "left" },
+                    onPress: () => navigation.goBack(),
+                  })
+                }
               }
             }}
           />

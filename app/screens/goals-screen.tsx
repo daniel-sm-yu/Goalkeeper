@@ -58,6 +58,8 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
         goalStore.deleteGoal(item.id)
         showMessage({
           message: `Deleted Goal: ${item.name}`,
+          titleStyle: { textTransform: "capitalize" },
+          type: "info",
           icon: { icon: "info", position: "left" },
         })
       }}
