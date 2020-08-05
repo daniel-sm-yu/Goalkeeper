@@ -13,9 +13,18 @@ import { color, spacing } from "../theme"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { PrimaryParamList } from "../navigation"
 
-const ADD_BUTTON = {
+const ADD_BUTTON_CONTAINER = {
   alignItems: "center",
-  paddingBottom: spacing[5],
+  margin: spacing[5],
+} as ViewStyle
+
+const ADD_BUTTON = {
+  width: 64,
+  height: 64,
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: 32,
+  backgroundColor: color.palette.grey,
 } as ViewStyle
 
 export const GoalsScreen: Component = observer(function DailyScreen() {
@@ -75,9 +84,10 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
         keyExtractor={item => item.id}
         extraData={(toJS(goalStore), goalStore.goals)}
         onDragEnd={({ data }) => goalStore.setGoals(data)}
+        ListFooterComponentStyle={ADD_BUTTON_CONTAINER}
         ListFooterComponent={
           <TouchableOpacity style={ADD_BUTTON} onPress={() => navigation.navigate("form")}>
-            <MaterialIcons name="add" size={42} color={color.palette.lightGrey} />
+            <MaterialIcons name="add" size={36} color={color.palette.lightGrey} />
           </TouchableOpacity>
         }
       />
