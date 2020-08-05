@@ -233,6 +233,13 @@ export const FormScreen: Component = observer(function AddScreen() {
                   icon: { icon: "warning", position: "left" },
                   duration: 10000,
                 })
+              } else if (!selectedColor) {
+                showMessage({
+                  message: "Missing Color",
+                  description: `Please select a color.`,
+                  type: "danger",
+                  icon: { icon: "danger", position: "left" },
+                })
               } else {
                 goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
                 resetForm()
