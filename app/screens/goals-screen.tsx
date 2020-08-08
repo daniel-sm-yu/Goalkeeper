@@ -31,16 +31,17 @@ const ADD_BUTTON = {
 export const GoalsScreen: Component = observer(function DailyScreen() {
   const { goalStore } = useStores()
   const navigation = useNavigation<StackNavigationProp<PrimaryParamList, "goals">>()
-  const SESSION_KEY = "previous-session"
+  const PREV_APP_CLOSE = "previous-app-close"
+  const PREV_USAGE_DAY = "previous-usage-day"
 
   const handleAppStateChange = nextAppState => {
     if (nextAppState === "background") {
       goalStore.stopTimer()
-      save(SESSION_KEY, Date.now())
+      save(PREV_APP_CLOSE, Date.now())
     } else if (nextAppState === "active" && goalStore.activeGoal) {
       goalStore.startTimer()
-      load(SESSION_KEY).then(prevSession => {
-        const minutesPassed = (Date.now() - prevSession) / (1000 * 60) // convert milliseconds to minutes
+      load(PREV_APP_CLOSE).then(prevAppClose => {
+        const minutesPassed = (Date.now() - prevAppClose) / (1000 * 60) // convert milliseconds to minutes
         console.log(`${minutesPassed.toFixed(1)} minutes added for ${goalStore.activeGoal.name}`)
         goalStore.activeGoal.addToCurrent(minutesPassed)
       })
@@ -51,6 +52,22 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
     AppState.addEventListener("change", handleAppStateChange)
     return () => AppState.removeEventListener("change", handleAppStateChange)
   }, [])
+
+  useEffect(() => {
+    load(PREV_USAGE_DAY).then(prevUsage => {
+      const current = new Date(Date.now())
+      const previous = new Date(prevUsage)
+
+      if (
+        current.getDate() !== previous.getDate() ||
+        current.getMonth() !== previous.getMonth() ||
+        current.getFullYear() !== previous.getFullYear()
+      ) {
+        goalStore.newDay()
+        save(PREV_USAGE_DAY, Date.now())
+      }
+    })
+  }, [new Date(Date.now()).getDate()])
 
   const barItem = ({ item, drag, isActive }) => (
     <Swiper
