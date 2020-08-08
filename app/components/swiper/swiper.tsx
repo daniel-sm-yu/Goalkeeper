@@ -15,6 +15,8 @@ export function Swiper(props: SwiperProps) {
   // grab the props
   const { children, onEdit, onDelete } = props
 
+  const swiper = React.useRef()
+
   const renderRightActions = (progress, dragX) => {
     return (
       <View style={styles.RIGHT_ACTION}>
@@ -23,7 +25,10 @@ export function Swiper(props: SwiperProps) {
           size={30}
           color={color.textPrimary}
           style={styles.ICON}
-          onPress={onEdit}
+          onPress={() => {
+            swiper.current.close()
+            onEdit()
+          }}
         />
         <MaterialCommunityIcons
           name="delete"
@@ -36,5 +41,9 @@ export function Swiper(props: SwiperProps) {
     )
   }
 
-  return <Swipeable renderRightActions={renderRightActions}>{children}</Swipeable>
+  return (
+    <Swipeable ref={swiper} renderRightActions={renderRightActions}>
+      {children}
+    </Swipeable>
+  )
 }

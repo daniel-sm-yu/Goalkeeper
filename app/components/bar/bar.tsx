@@ -7,13 +7,11 @@ import Ripple from "react-native-material-ripple" // https://www.npmjs.com/packa
 
 export interface BarProps {
   isActive: boolean
-  isDragging: boolean
   name: string
   color: string
   target: number
   current: number
   onPress
-  onLongPress
 }
 
 const getOpacity = completion => {
@@ -58,7 +56,7 @@ export class Bar extends React.Component<BarProps> {
   }
 
   render() {
-    const { isActive, isDragging, name, color, current, target, onPress, onLongPress } = this.props
+    const { isActive, name, color, current, target, onPress } = this.props
 
     const widthInterpolated = this.animation.interpolate({
       inputRange: [0, 1],
@@ -67,17 +65,15 @@ export class Bar extends React.Component<BarProps> {
     })
 
     const activeStyle = isActive ? { backgroundColor: getBackgroundColor(color) } : {}
-    const draggingStyle = isDragging ? { elevation: 4, borderColor: getColor(color) + "55" } : {}
 
     return (
       <Ripple
-        style={[styles.CONTAINER, activeStyle, draggingStyle]}
+        style={[styles.CONTAINER, activeStyle]}
         rippleColor={getColor(color)}
         rippleOpacity={1}
         rippleDuration={750}
         rippleContainerBorderRadius={dimensions.bar.borderRadius}
         onPress={onPress}
-        onLongPress={onLongPress}
       >
         <Animated.View
           style={{
