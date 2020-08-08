@@ -57,6 +57,18 @@ export const GoalStoreModel = types
       self.startTimer()
     },
   }))
+  .actions(self => ({
+    newDay: () => {
+      self.setActiveId("")
+      self.goals.forEach(goal => {
+        if (goal.daily) {
+          self.getGoal(goal.id).resetCurrent()
+        } else {
+          self.deleteGoal(goal.id)
+        }
+      })
+    },
+  }))
 
 /**
   * Un-comment the following to omit model attributes from your snapshots (and from async storage).

@@ -18,6 +18,9 @@ export const GoalModel = types
     addToCurrent: amount => {
       self.current += amount
     },
+    resetCurrent: () => {
+      self.current = 0
+    },
   }))
 
 /**
