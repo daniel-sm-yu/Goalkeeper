@@ -74,9 +74,10 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
       onDelete={() => {
         goalStore.deleteGoal(item.id)
         showMessage({
-          message: `Deleted Goal: ${item.name}`,
+          message: item.name,
+          description: "has been removed from your list.",
           titleStyle: { textTransform: "capitalize" },
-          type: "info",
+          type: "default",
           icon: { icon: "info", position: "left" },
         })
       }}

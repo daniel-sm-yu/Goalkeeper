@@ -240,8 +240,8 @@ export const FormScreen: Component = observer(function AddScreen() {
                   )
                   navigation.goBack()
                   showMessage({
-                    message: `Edited Goal: ${name}`,
-                    description: "Changes were successfully saved.",
+                    message: name,
+                    description: "has been updated.",
                     titleStyle: { textTransform: "capitalize" },
                     type: "info",
                     icon: { icon: "info", position: "left" },
@@ -250,12 +250,11 @@ export const FormScreen: Component = observer(function AddScreen() {
                   goalStore.addGoal(name, Number(hour), Number(minute), selectedColor, repeatDaily)
                   navigation.goBack()
                   showMessage({
-                    message: `New Goal: ${name}`,
-                    description: "Tap here to add another goal.",
+                    message: name,
+                    description: "has been added to your list.",
                     titleStyle: { textTransform: "capitalize" },
                     type: "success",
                     icon: { icon: "success", position: "left" },
-                    onPress: () => navigation.navigate("form"),
                   })
                 }
               }
