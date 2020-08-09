@@ -71,7 +71,7 @@ const App: Component<{}> = () => {
           initialState={initialNavigationState}
           onStateChange={onNavigationStateChange}
         />
-        <FlashMessage position="bottom" duration={6000} />
+        <FlashMessage position="bottom" duration={4500} />
       </SafeAreaProvider>
     </RootStoreProvider>
   )

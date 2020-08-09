@@ -221,6 +221,15 @@ export const FormScreen: Component = observer(function AddScreen() {
                   icon: { icon: "warning", position: "left" },
                   duration: 10000,
                 })
+              } else if (Number(hour) * 60 + Number(minute) <= 0) {
+                hourInput.current.focus()
+                showMessage({
+                  message: "Strange Duration",
+                  description: `Please enter a duration that makes sense.`,
+                  type: "warning",
+                  icon: { icon: "warning", position: "left" },
+                  duration: 10000,
+                })
               } else if (!selectedColor) {
                 showMessage({
                   message: "Missing Color",
