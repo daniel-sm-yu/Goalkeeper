@@ -14,7 +14,6 @@ export function Button(props: ButtonProps) {
   // grab the props
   const {
     preset = "primary",
-    tx,
     text,
     style: styleOverride,
     textStyle: textStyleOverride,
@@ -27,7 +26,7 @@ export function Button(props: ButtonProps) {
     flatten([textPresets[preset] || textPresets.primary, textStyleOverride]),
   )
 
-  const content = children || <Text tx={tx} text={text} style={textStyle} />
+  const content = children || <Text text={text} style={textStyle} />
 
   return (
     <TouchableOpacity style={viewStyle} {...rest}>

@@ -3,12 +3,7 @@ import { ButtonPresetNames } from "./button.presets"
 
 export interface ButtonProps extends TouchableOpacityProps {
   /**
-   * Text which is looked up via i18n.
-   */
-  tx?: string
-
-  /**
-   * The text to display if not using `tx` or nested components.
+   * The text to display.
    */
   text?: string
 
