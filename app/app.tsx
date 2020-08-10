@@ -11,6 +11,7 @@
  */
 import "./utils/ignore-warnings"
 import React, { useState, useEffect, useRef, FunctionComponent as Component } from "react"
+import { View } from "react-native"
 import { NavigationContainerRef } from "@react-navigation/native"
 import { SafeAreaProvider, initialWindowSafeAreaInsets } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts"
@@ -29,7 +30,10 @@ import FlashMessage from "react-native-flash-message" // https://www.npmjs.com/p
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
 import { enableScreens } from "react-native-screens"
+import { color } from "./theme"
 enableScreens()
+
+const PREVENT_FLASHES = { flex: 1, backgroundColor: color.background }
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
@@ -56,10 +60,8 @@ const App: Component<{}> = () => {
   }, [])
 
   // Before we show the app, we have to wait for our state to be ready.
-  // In the meantime, don't render anything. This will be the background
-  // color set in native by rootView's background color. You can replace
-  // with your own loading component if you wish.
-  if (!rootStore) return null
+  // In the meantime, render an empty screen.
+  if (!rootStore) return <View style={PREVENT_FLASHES} />
 
   // otherwise, we're ready to render the app
   return (
