@@ -3,12 +3,7 @@ import { IconTypes } from "../icon/icons"
 
 export interface HeaderProps {
   /**
-   * Main header, e.g. POWERED BY BOWSER
-   */
-  headerTx?: string
-
-  /**
-   * header non-i18n
+   * Text on the header
    */
   headerText?: string
 

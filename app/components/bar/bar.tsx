@@ -3,7 +3,7 @@ import { Animated } from "react-native"
 import { Text } from "../"
 import { barStyles as styles } from "./bar.styles"
 import { getColor, getBackgroundColor, dimensions } from "../../theme"
-import Ripple from "react-native-material-ripple" // https://www.npmjs.com/package/react-native-material-ripple
+import Ripple from "react-native-material-ripple"
 
 export interface BarProps {
   isActive: boolean

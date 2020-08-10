@@ -17,7 +17,7 @@ export function Swiper(props: SwiperProps) {
 
   const swiper = React.useRef()
 
-  const renderRightActions = (progress, dragX) => {
+  const renderRightActions = () => {
     return (
       <View style={styles.RIGHT_ACTION}>
         <MaterialIcons
