@@ -10,11 +10,6 @@ const BASE: TextStyle = {
   fontSize: 16,
 }
 
-/**
- * All the variations of text styling within the app.
- *
- * You want to customize these to whatever you need in your app.
- */
 export const presets = {
   /**
    * The default text styles.

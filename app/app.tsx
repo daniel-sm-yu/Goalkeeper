@@ -24,7 +24,7 @@ import {
   useNavigationPersistence,
 } from "./navigation"
 import { RootStore, RootStoreProvider, setupRootStore } from "./models"
-import FlashMessage from "react-native-flash-message" // https://www.npmjs.com/package/react-native-flash-message
+import FlashMessage from "react-native-flash-message"
 
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:

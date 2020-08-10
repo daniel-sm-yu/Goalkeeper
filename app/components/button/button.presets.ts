@@ -19,11 +19,6 @@ const BASE_TEXT: TextStyle = {
   paddingHorizontal: spacing[3],
 }
 
-/**
- * All the variations of text styling within the app.
- *
- * You want to customize these to whatever you need in your app.
- */
 export const viewPresets = {
   /**
    * A smaller piece of secondard information.

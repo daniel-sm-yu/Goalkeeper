@@ -5,8 +5,6 @@ import { TextProps } from "./text.props"
 import { mergeAll, flatten } from "ramda"
 
 /**
- * For your text displaying needs.
- *
  * This component is a HOC over the built-in React Native one.
  */
 export function Text(props: TextProps) {
