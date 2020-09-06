@@ -9,6 +9,7 @@ export const GoalStoreModel = types
   .props({
     activeId: types.optional(types.string, ""),
     goals: types.optional(types.array(GoalModel), []),
+    points: types.optional(types.number, 0),
   })
   .views(self => ({
     get activeGoal() {
@@ -60,13 +61,21 @@ export const GoalStoreModel = types
   .actions(self => ({
     newDay: () => {
       self.setActiveId("")
+      let points = 0
       self.goals.forEach(goal => {
+        if (goal.current < goal.target) {
+          points += goal.current
+        } else {
+          points += goal.target * 1.25
+        }
+
         if (goal.daily) {
           self.getGoal(goal.id).resetCurrent()
         } else {
           self.deleteGoal(goal.id)
         }
       })
+      self.points += Math.round(points)
     },
   }))
 

@@ -117,7 +117,7 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
         }
       />
       <View style={POINTS_CONTAINER}>
-        <Text>345 points</Text>
+        <Text>{goalStore.points} points</Text>
       </View>
     </Screen>
   )
