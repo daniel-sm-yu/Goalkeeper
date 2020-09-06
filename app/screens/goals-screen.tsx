@@ -1,7 +1,7 @@
 import React, { FunctionComponent as Component, useEffect } from "react"
 import { observer } from "mobx-react-lite"
-import { AppState, ViewStyle, TouchableOpacity, FlatList } from "react-native"
-import { Screen, Bar, Header, Swiper } from "../components"
+import { AppState, ViewStyle, TouchableOpacity, FlatList, View } from "react-native"
+import { Screen, Bar, Header, Swiper, Text } from "../components"
 import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../models"
 import { save, load } from "../utils/storage"
@@ -25,6 +25,14 @@ const ADD_BUTTON = {
   alignItems: "center",
   borderRadius: 32,
   backgroundColor: color.palette.grey,
+} as ViewStyle
+
+const POINTS_CONTAINER = {
+  height: 24,
+  justifyContent: "center",
+  alignItems: "center",
+  paddingVertical: spacing[4],
+  backgroundColor: "black",
 } as ViewStyle
 
 export const GoalsScreen: Component = observer(function DailyScreen() {
@@ -108,6 +116,9 @@ export const GoalsScreen: Component = observer(function DailyScreen() {
           </TouchableOpacity>
         }
       />
+      <View style={POINTS_CONTAINER}>
+        <Text>345 points</Text>
+      </View>
     </Screen>
   )
 })
